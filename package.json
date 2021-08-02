@@ -1,0 +1,19 @@
+{
+  "name": "1.-blog-website_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.5",
+    "mongose": "^0.0.2-security"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon App.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
