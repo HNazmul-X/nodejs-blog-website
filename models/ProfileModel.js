@@ -6,8 +6,14 @@ const profileSchema = new Schema(
     {
         user: {
             type: Schema.Types.ObjectId,
-            ref: UserModel,
+            ref: "User",
             required: true,
+        },
+        name:{
+            type:String,
+            trim:true,
+            required:true,
+            maxlength:50,
         },
         title: {
             type: String,
@@ -28,13 +34,13 @@ const profileSchema = new Schema(
         posts: [
             {
                 type: Schema.Types.ObjectId,
-                ref: PostModel,
+                ref: "Post",
             },
         ],
         bookmarks: [
             {
                 type: Schema.Types.ObjectId,
-                ref: PostModel,
+                ref: "Post",
             },
         ],
     },

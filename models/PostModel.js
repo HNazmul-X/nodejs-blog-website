@@ -17,7 +17,7 @@ const postSchema = new Schema({
     },
     author:{
         type:Schema.Types.ObjectId,
-        ref:UserModel,
+        ref:"User",
         required:true
     },
     tags:{
@@ -31,7 +31,7 @@ const postSchema = new Schema({
     Comments:[
         {
             type:Schema.Types.ObjectId,
-            ref:CommentModel
+            ref:"Comment"
         }
     ]
 },{

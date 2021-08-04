@@ -4,7 +4,7 @@ const ProfileModel = require("./ProfileModel")
 
 const userSchema = new Schema({
 
-    name:{
+    username:{
         type:String,
         require:true,
         trim:true,
@@ -16,13 +16,15 @@ const userSchema = new Schema({
         required:true
     },
     password:{
-        type:true,
+        type:String,
         required:true,
     },
     profile:{
         type:Schema.Types.ObjectId,
-        ref:ProfileModel
+        ref:"Profile"
     }
+}, {
+    timestamps:true
 })
 
 const UserModel = model("User", userSchema)

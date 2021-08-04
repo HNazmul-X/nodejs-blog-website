@@ -6,12 +6,12 @@ const UserModel = require("./UserModel");
 const commentSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
-        ref: UserModel,
+        ref: "User",
         required: true,
     },
     post: {
         type: Schema.Types.ObjectId,
-        ref: PostModel,
+        ref: "Post",
         required: true,
     },
     body: {
@@ -23,7 +23,7 @@ const commentSchema = new Schema({
         {
             user: {
                 type: Schema.Types.ObjectId,
-                ref: UserModel,
+                ref: "User",
                 required: true,
             },
             body: {
@@ -33,7 +33,7 @@ const commentSchema = new Schema({
             },
             createdAT: {
                 type: Date,
-                default: new Data(),
+                default: new Date(),
             },
         },
     ],

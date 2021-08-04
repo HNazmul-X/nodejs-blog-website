@@ -1,0 +1,46 @@
+@import "util";
+
+#navbar-of-website {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    background: #ffffff !important;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+    .navbar-nav.navigation-items {
+        .nav-item {
+            .nav-link {
+                padding: 7px 15px;
+                border-radius: 50px;
+                &:hover {
+                    background: $primary;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+.navbar-of-website-spacer {
+    padding: 26px;
+}
+
+/* sign up form css */
+.sign-up-form {
+    border-radius: 50px;
+    overflow: hidden;
+    background: $html;
+    @extend .shadow-3d-2;
+    label,
+    p,
+    span,input, .form-control {
+        color:$text;
+        font-weight: lighter;
+    }
+
+    input, .form-control{
+        font-weight: 500;
+        color:dimgray;
+        font-size: 17px;;
+    }
+}
