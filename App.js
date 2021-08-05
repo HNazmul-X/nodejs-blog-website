@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const { middleware } = require("./middleware/defaultMiddleware");
 // const { validatroRouter } = require("./Playground/palygournd"); TODO:
 const { authRouter } = require("./routes/authRouter");
+const port = process.env.PORT || 8080
 
 
 // // initializing application
@@ -29,4 +30,4 @@ app.get("/", (req, res) => {
     })
 });
 
-app.listen(8080, console.log(`your server is running port on http://localhost:8080`));
+app.listen(port, console.log(`your server is running port on http://localhost:8080`));

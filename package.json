@@ -2,7 +2,7 @@
   "name": "1.-blog-website_project",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "App.js",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
