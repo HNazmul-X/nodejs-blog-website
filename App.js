@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const { middleware } = require("./middleware/defaultMiddleware");
+// const { validatroRouter } = require("./Playground/palygournd"); TODO:
 const { authRouter } = require("./routes/authRouter");
 
 
@@ -13,7 +14,7 @@ app.use("/auth",authRouter)
 
 
 //TODO: should be removed
-app.use("/playground", )
+// app.use("/playground",validatroRouter )
 
 
 

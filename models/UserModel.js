@@ -1,6 +1,5 @@
 //user need " email, username, password   "
 const {Schema,  model} = require("mongoose")
-const ProfileModel = require("./ProfileModel")
 
 const userSchema = new Schema({
 
@@ -8,7 +7,8 @@ const userSchema = new Schema({
         type:String,
         require:true,
         trim:true,
-        maxlength:30,
+        maxLength:30,
+        minLength:3
     },
     email:{
         type:String,
@@ -18,6 +18,7 @@ const userSchema = new Schema({
     password:{
         type:String,
         required:true,
+        minLength:8
     },
     profile:{
         type:Schema.Types.ObjectId,

@@ -1,4 +1,4 @@
-<%- include("../../includes/header.ejs") %>
+<%- include("../../includes/header.ejs", {title:"create your free account"}) %>
 
 <div class="row container mx-auto">
     <div class="col-md-6 offset-md-3 mt-5">
@@ -10,22 +10,26 @@
                     
                     <div class="mb-3">
                         <label for="email">Enter You Email here</label>
-                        <input type="email" required name="email" id="email" class="form-control fs-5">
+                        <input autocomplete="off" type="email"  name="email" id="email" value="<%= value.email ? value.email : "" %> " class="form-control fs-5 <%= error.email ? "is-invalid" : ''  %>  ">
+                        <p class="<%= error.email ? "d-block  small text-danger" : "d-none" %> " > <%= error.email && error.email %> </p>
                     </div>
                     <div class="mb-3">
                         <label for="username">Enter You username (must be uniq)</label>
-                        <input type="text" required name="username" id="username" class="form-control fs-5">
+                        <input autocomplete="off" type="text"  name="username" id="username" value="<%= value.username ? value.username : "" %>" class="form-control fs-5 <%= error.username ? "is-invalid" : ''  %>  ">
+                        <p class="<%= error.username ? "d-block small text-danger" : "d-none" %> " > <%= error.username && error.username %> </p>
                     </div>
                     <div class="mb-3">
                         <label for="password">Enter You password here</label>
-                        <input type="password" required name="password" id="password" class="form-control fs-5">
+                        <input autocomplete="off" type="password"  name="password" id="password" value="<%= value.password ? value.password : "" %>"  class="form-control fs-5 <%= error.password ? "is-invalid" : ''  %>  ">
+                        <p class="<%= error.password ? "d-block small text-danger" : "d-none" %> " > <%= error.password && error.password %> </p>
                     </div>
                     <div class="mb-3">
                         <label for="retypePassword">Confirm Your Password here</label>
-                        <input type="password" required name="confirmPassword" id="retypePassword" class="form-control fs-5">
+                        <input autocomplete="off" type="password"  name="confirmPassword" id="retypePassword" class="form-control fs-5 <%= error.confirmPassword ? "is-invalid" : ''  %>  ">
+                        <p class="<%= error.confirmPassword ? "d-block small text-danger" : "d-none" %> " > <%= error.confirmPassword && error.confirmPassword %> </p>
                     </div>
                     <div class="text-center mt-3">
-                        <input class="p-2 px-5 btn theme-bg-dark text-light" type="submit" value="Submit">
+                        <input autocomplete="off" class="p-2 px-5 btn theme-bg-dark text-light" type="submit" value="Submit">
                     </div>
                 
                 </form>

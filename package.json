@@ -8,13 +8,15 @@
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "express-validator": "^6.12.1",
     "mongoose": "^5.13.5",
     "mongose": "^0.0.2-security",
     "morgan": "^1.10.0"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "nodemon App.js"
+    "start": "node App.js",
+    "dev": "nodemon App.js"
   },
   "author": "",
   "license": "ISC"
