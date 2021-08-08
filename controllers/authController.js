@@ -40,29 +40,36 @@ exports.signUpPostController = async (req, res, next) => {
 // login contorllers
 //====================================================
 exports.loginGetController = (req, res, next) => {
-    res.render("pages/auth/login", { error: "" });
+    res.render("pages/auth/login", { errorStr: "", errorObj: {} });
 };
 
 exports.loginPostController = async (req, res, next) => {
-    try {
-        const { email, password } = req.body;
-        const user = await UserModel.findOne({ email: email?.toLowerCase() });
-        if (!user) {
-            res.render("pages/auth/login", { error: "Invalid Email or Password" });
-        } else {
-            const isPasswordMatch = await bcrypt.compare(password, user?.password);
+    const isDataRight = validationResult(req);
 
-            if (!isPasswordMatch) {
-                res.render("pages/auth/login", { error: "Invalid Email or Password" });
+    if (isDataRight.isEmpty()) {
+        try {
+            const { email, password } = req.body;
+            const user = await UserModel.findOne({ email: email?.toLowerCase() });
+            if (!user) {
+                res.render("pages/auth/login", { errorStr: "Invalid Email or Password", errorObj: {} });
             } else {
-                console.log(user);
-                console.log(isPasswordMatch);
-                res.redirect("/auth/signup");
+                const isPasswordMatch = await bcrypt.compare(password, user?.password);
+
+                if (!isPasswordMatch) {
+                    res.render("pages/auth/login", { errorStr: "Invalid Email or Password", errorObj: {} });
+                } else {
+                    console.log(user);
+                    console.log(isPasswordMatch);
+                    res.redirect("/auth/signup");
+                }
             }
+        } catch (err) {
+            console.log(err);
+            next();
         }
-    } catch (err) {
-        console.log(err);
-        next();
+    } else {
+        const dataEmptyError = isDataRight.formatWith((e) => e.msg).mapped();
+        res.render("pages/auth/login", { errorStr: "", errorObj: { email: dataEmptyError.email, password: dataEmptyError.password } });
     }
 };
 

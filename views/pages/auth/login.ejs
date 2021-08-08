@@ -9,15 +9,18 @@
                 <form action="/auth/login" method="POST">
                     <div class="mb-3">
                         <label for="email">Enter You Email here</label>
-                        <input autocomplete="off" type="email" required name="email" id="email" class="form-control fs-5" />
+                        <input autocomplete="off" type="email"  name="email" id="email" class="form-control fs-5" />
+                        <p class=" <%= errorObj.email?"d-block":"d-none"  %>  text-danger small "> <%= errorObj.email && errorObj.email %> </p>
                     </div>
                     <div class="mb-3">
                         <label for="password">Enter You password here</label>
-                        <input autocomplete="off" type="password" required name="password" id="password" class="form-control fs-5" />
+                        <input autocomplete="off" type="password"  name="password" id="password" class="form-control fs-5" />
+                        <p class=" <%= errorObj.password?"d-block":"d-none"  %>  text-danger small "> <%= errorObj.password && errorObj.password %> </p>
+
                     </div>
                     <div>
-                        <p class=" <%= error? " d-block text-danger text-center" : " d-none" %> ">
-                            <%= error && error %> </p>
+                        <p class=" <%= errorStr? " d-block text-danger text-center" : " d-none" %> ">
+                            <%= errorStr && errorStr %> </p>
                     </div>
                     <div class="text-center mt-3">
                         <input autocomplete="off" class="p-2 px-5 btn theme-bg-dark text-light" type="submit" value="Submit" />

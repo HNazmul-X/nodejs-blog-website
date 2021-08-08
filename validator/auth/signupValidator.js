@@ -27,14 +27,13 @@ const SignupValidator = [
     body("password")
         .matches(/^(?=.*[a-z])(?=.*\d)[a-zA-Z\d]{8,}$/)
         .withMessage("Password Must be 8 character and Atlest one number"),
-    body("confirmPassword").custom((confirmPassword , {req})=> {
-        if(confirmPassword !== req?.body?.password){
-            throw new Error("Password Doesn't match")
-        }else {
-            return true
+    body("confirmPassword").custom((confirmPassword, { req }) => {
+        if (confirmPassword !== req?.body?.password) {
+            throw new Error("Password Doesn't match");
+        } else {
+            return true;
         }
-    })
+    }),
 ];
-
 
 module.exports = SignupValidator;
