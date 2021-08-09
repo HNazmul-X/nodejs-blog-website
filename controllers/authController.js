@@ -1,6 +1,7 @@
 const UserModel = require("../models/UserModel");
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
+const { response } = require("express");
 
 exports.signUpGetController = (req, res, next) => {
     res.render("pages/auth/signup", { error: {}, value: {} });
@@ -61,7 +62,14 @@ exports.loginPostController = async (req, res, next) => {
                     // successfull login
                     req.session.isLoggedIn = true;
                     req.session.user = user;
-                    res.redirect("/auth/signup");
+                    req.session.save((issue) => {
+                        if (issue) {
+                            console.log(issue);
+                            return next(issue);
+                        } else {
+                            res.redirect("/dashboard/");
+                        }
+                    });
                 }
             }
         } catch (err) {
@@ -74,4 +82,13 @@ exports.loginPostController = async (req, res, next) => {
     }
 };
 
-exports.logOutController = (req, res, next) => {};
+exports.logOutController = (req, res, next) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.log(err);
+            return next();
+        } else {
+            res.redirect("/auth/login");
+        }
+    });
+};

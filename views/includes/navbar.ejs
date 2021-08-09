@@ -1,7 +1,15 @@
-<nav id="navbar-of-website"  class="navbar navbar-expand-lg navbar-light bg-light">
+<nav id="navbar-of-website" class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -13,19 +21,25 @@
             </form>
             <ul class="navbar-nav navigation-items ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Dashboard</a>
+                    <a class="nav-link active" href="/dashboard/">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">News Feed</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
+                <% if (isLoggedIn) { %>
+                <li class="nav-item ">
+                    <a class="nav-link theme-bg text-light" href="/auth/logout">Logout</a>
+                </li>
+
+                <% } else {%>
+                <li class="nav-item mx-2">
+                    <a class="nav-link  btn theme-bg text-light" href="/auth/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Logout</a>
+                    <a class="nav-link btn btn-outline-primary" href="/auth/signup">Sign up</a>
                 </li>
+                <% } %>
             </ul>
-            
         </div>
     </div>
 </nav>

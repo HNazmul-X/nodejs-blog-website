@@ -16,3 +16,13 @@ exports.bindUserWithRequest = () => {
         }
     };
 };
+
+exports.isAuthenticate = (req, res, next) => {
+
+    if(!req.session.isLoggedIn){
+        res.redirect("/auth/login")
+    }
+    else{
+        return next()
+    }
+}
