@@ -1,0 +1,29 @@
+<%- include("../../includes/header.ejs", {title:"create your free account"}) %>
+
+<div class="row container mx-auto">
+    <div class="col-md-6 offset-md-3 mt-5">
+        <div class="sign-up-form">
+            <div class="p-5 pt-4">
+                <h4 class="text-center mb-4">Create A account</h4>
+
+                <form action="/playground/playground" method="POST">
+                    <div class="mb-3">
+                        <label for="email">Enter You Email here</label>
+                        <input autocomplete="off" type="email" name="email" id="email" class="form-control fs-5" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="email">Enter Your Password Here</label>
+                        <input autocomplete="off" type="email" name=" password" id="email" class="form-control fs-5" />
+                    </div>
+                    <div class="text-center mt-3">
+                        <input autocomplete="off" class="p-2 px-5 btn theme-bg-dark text-light" type="submit" value="Submit" />
+                    </div>
+                </form>
+
+                <p class="text-center my-3">Already have a account <a href="/auth/login">Login your account</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("../../includes/footer.ejs") %>

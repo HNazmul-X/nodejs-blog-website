@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const { middleware } = require("./middleware/defaultMiddleware");
-// const { validatroRouter } = require("./Playground/palygournd"); TODO:
+const playgroundRouter = require("./playground/validator");
 const { authRouter } = require("./routes/authRouter");
 const dashboardRoutes = require("./routes/dashboardRoute");
 const port = process.env.PORT || 8080
@@ -13,10 +13,10 @@ app.use(middleware)
 app.set("view engine", "ejs")
 app.use("/auth",authRouter)
 app.use("/dashboard", dashboardRoutes)
+app.use("/playground", playgroundRouter)
 
 
-//TODO: should be removed
-// app.use("/playground",validatroRouter )
+
 
 
 
