@@ -25,6 +25,7 @@ app.use("/auth",authRouter)
 mongoose.connect("mongodb://localhost:27017/BlogWithStackLearnerEJS", { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: true });
 
 app.get("/", (req, res) => {
+    
     res.json({
         urls:"http://localhost:8080/auth/signup"
     })

@@ -58,8 +58,9 @@ exports.loginPostController = async (req, res, next) => {
                 if (!isPasswordMatch) {
                     res.render("pages/auth/login", { errorStr: "Invalid Email or Password", errorObj: {} });
                 } else {
-                    console.log(user);
-                    console.log(isPasswordMatch);
+                    // successfull login
+                    req.session.isLoggedIn = true;
+                    req.session.user = user;
                     res.redirect("/auth/signup");
                 }
             }
