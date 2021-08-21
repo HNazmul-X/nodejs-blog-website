@@ -3,7 +3,7 @@ $primary-light: #90caf9;
 $primary: #03a9f4;
 $primary-dark: #0277bd;
 $html: #E7E7E7;
-$text:#0000007a;
+$text:#7F7C7C;
 
 // partails css here
 * {
@@ -50,7 +50,10 @@ input,
 .sdw-3 {
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086);
 }
-
+.box{
+    background:white;
+    border:1px solid #C7C7C7;
+}
 .them-text-light {
     color: $primary-light;
 }

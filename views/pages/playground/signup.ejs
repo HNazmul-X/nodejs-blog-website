@@ -1,4 +1,4 @@
-<%- include("../../includes/header.ejs", {title:"create your free account"}) %>
+<%- include("../../includes/header.ejs", {title:"create your free account",flashMsg:{}}) %>
 
 <div class="row container mx-auto">
     <div class="col-md-6 offset-md-3 mt-5">
@@ -6,14 +6,14 @@
             <div class="p-5 pt-4">
                 <h4 class="text-center mb-4">Create A account</h4>
 
-                <form action="/playground/playground" method="POST">
+                <form action="/playground/play" method="POST" enctype="multipart/form-data" >
                     <div class="mb-3">
                         <label for="email">Enter You Email here</label>
                         <input autocomplete="off" type="email" name="email" id="email" class="form-control fs-5" />
                     </div>
                     <div class="mb-3">
-                        <label for="email">Enter Your Password Here</label>
-                        <input autocomplete="off" type="email" name=" password" id="email" class="form-control fs-5" />
+                        <label for="file">Choose you file</label>
+                        <input autocomplete="off" type="file" name="profile-image" id="file" class="form-control fs-5" />
                     </div>
                     <div class="text-center mt-3">
                         <input autocomplete="off" class="p-2 px-5 btn theme-bg-dark text-light" type="submit" value="Submit" />

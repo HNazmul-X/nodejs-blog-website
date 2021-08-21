@@ -1,35 +1,24 @@
+require("dotenv").config();
+const chalk = require("chalk");
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const { middleware } = require("./middleware/defaultMiddleware");
-const playgroundRouter = require("./playground/validator");
-const { authRouter } = require("./routes/authRouter");
-const dashboardRoutes = require("./routes/dashboardRoute");
-const port = process.env.PORT || 8080
-
+const { connectMiddleware } = require("./middleware/defaultMiddleware");
+const error404 = require("./routes/error");
+const { connectRoutes } = require("./routes/Routes");
+const port = process.env.PORT || 8080;
 
 // // initializing application
-app.use(middleware)
-app.set("view engine", "ejs")
-app.use("/auth",authRouter)
-app.use("/dashboard", dashboardRoutes)
-app.use("/playground", playgroundRouter)
+connectMiddleware(app);
 
+//setting view engine with application
+app.set("view engine", "ejs");
 
-
-
-
-
-
+//setting routes
+connectRoutes(app);
+error404(app)
 
 //connecting to database
-mongoose.connect("mongodb://localhost:27017/BlogWithStackLearnerEJS", { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: true });
-
-app.get("/", (req, res) => {
-    
-    res.json({
-        urls:"http://localhost:8080/auth/signup"
-    })
+mongoose.connect("mongodb://localhost:27017/BlogWithStackLearnerEJS", { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false }).then((res) => {
+    app.listen(port, console.log(chalk.bgGreen.black(`your server is running port on http://${process.env.DB_HOST}:8080`)));
 });
-
-app.listen(port, console.log(`your server is running port on http://localhost:8080`));

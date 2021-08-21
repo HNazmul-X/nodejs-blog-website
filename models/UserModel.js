@@ -23,6 +23,10 @@ const userSchema = new Schema({
     profile:{
         type:Schema.Types.ObjectId,
         ref:"Profile"
+    },
+    profilePic:{
+        type:String,
+        default:"/upload/default-avatar.png"
     }
 }, {
     timestamps:true

@@ -9,11 +9,14 @@ const profileSchema = new Schema(
             ref: "User",
             required: true,
         },
-        name:{
-            type:String,
-            trim:true,
-            required:true,
-            maxLength:50,
+        profilePic: {
+            type: String,
+        },
+        name: {
+            type: String,
+            trim: true,
+            required: true,
+            maxLength: 50,
         },
         title: {
             type: String,
@@ -49,6 +52,6 @@ const profileSchema = new Schema(
     },
 );
 
-const ProfileModel = model("Profile", profileSchema)
+const ProfileModel = model("Profile", profileSchema);
 
-module.exports = ProfileModel
+module.exports = ProfileModel;

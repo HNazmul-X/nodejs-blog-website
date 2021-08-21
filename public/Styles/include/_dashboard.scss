@@ -1,0 +1,60 @@
+@import "util";
+
+#create-profile-page {
+    section#profile-image {
+        .file-upload-form {
+            display: grid;
+            place-items: center;
+            form {
+                width: 100%;
+                padding: 30px;
+            }
+        }
+    }
+
+    section#user-info {
+        .primary-info {
+            @extend .box;
+            padding: 20px;
+            margin-top: 30px;
+            color: $text;
+
+            .custom-input-wrapper {
+                padding: 20px;
+                input {
+                    padding: 10px;
+                    background: $html;
+                    color: $text;
+                }
+                textarea {
+                    background: $html;
+                    padding: 10px;
+                }
+            }
+        }
+
+        .socials-link {
+            @extend .box;
+            padding: 20px;
+            margin-top: 30px;
+            color: $text;
+            .social-input-wrapper {
+                margin-bottom: 30px !important;
+                .input-group {
+                    border-radius: 30px;
+                    overflow: hidden;
+                    input {
+                        padding: 15px;
+                        background: $html;
+                        color: $text;
+                    }
+                    span.input-group-text {
+                        padding-left: 20px;
+                        font-size: 20px;
+                        color: $text;
+                    }
+                }
+            }
+        }
+    }
+}

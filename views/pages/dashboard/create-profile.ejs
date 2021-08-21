@@ -1,0 +1,125 @@
+<%- include("../../includes/header.ejs", {title:"login to your account"})%>
+
+
+<main id="create-profile-page">
+    <div class="container mx-auto">
+        <!-- profile image form area -->
+        <section id="profile-image">
+            <div class="p-5 text-center">
+                <h1 class="text-secondary">Welcome to Funbook</h1>
+                <p class="small text-secondary">Decorate Your Profile as you can as possible*-</p>
+            </div>
+            <div class="row w-100">
+                <div class="col-md-4">
+                    <div class="image-wrapper bg-light w-100 text-center p-2 box">
+                        <img src="<%= user.profilePic %>" class="img-thumbnail profile-thumb__image img-fluid" alt="<%= user.username%>Profile Pic" />
+                    </div>
+                </div>
+                <div class="col-md-8 file-upload-form bg-light box">
+                    <form action="/upload/profile-image" enctype="multipart/form-data" id="profile-upload-form" method="POST">
+                        <input  type="file" name="profilePic" id="profile-image-input" class="form-control mb-3" />
+                        <div class="text-center">
+                        <button type="reset" id="profile-remove-pic-button" class="btn-danger btn w-100 <%= user?.profilePic.includes("default")?"d-none":"d-block" %> ">Remove Image</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- user information details -->
+    <section id="user-info">
+        <div class="container">
+            <form action="" method="post">
+                <div class="primary-info">
+                    <div class="py-4">
+                        <h2 class="text-center">Give Your Details Here</h2>
+                    </div>
+                    <div class="mb-2 custom-input-wrapper">
+                        <label for="full-name">Your Full Name</label>
+                        <input type="text" id="full-name" class="form-control" name="name" />
+                    </div>
+
+                    <div class="row w-100 custom-input-wrapper row-cols-md-2 mx-0">
+                        <div class="col mb-2 p-0 pe-3">
+                            <label for="name">Your Full Name here</label>
+                            <input type="text" name="name" class="form-control custom-input" />
+                        </div>
+                        <div class="col mb-2 p-0 ps-3">
+                            <label for="name">Your Full Name here</label>
+                            <input type="text" name="name" class="form-control custom-input" />
+                        </div>
+                    </div>
+
+                    <div class="custom-input-wrapper mb-2">
+                        <label for="bio">Write you bio here</label>
+                        <textarea name="bio" id="bio" class="form-control" cols="30" rows="7"></textarea>
+                    </div>
+                </div>
+
+                <div class="socials-link">
+                    <div class="py-4 text-center">
+                        <h2>Provide your socials Link</h2>
+                    </div>
+                    <div class="row row-cols-1 row-cols-md-2">
+                        <div class="col mb-2 social-input-wrapper">
+                            <label for="facebook">Facebook Profile link</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><span class="iconify-inline" data-icon="akar-icons:facebook-fill"></span></span>
+                                <input type="text" id="facebook" name="facebook" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col mb-2 social-input-wrapper">
+                            <label for="twitter">twitter Profile link</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><span class="iconify-inline" data-icon="akar-icons:twitter-fill"></span></span>
+                                <input type="text" id="twitter" name="twitter" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col mb-2 social-input-wrapper">
+                            <label for="linkedin">linkedin Profile link</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><span class="iconify-inline" data-icon="akar-icons:linkedin-fill"></span></span>
+                                <input type="text" id="linkedin" name="linkedin" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col mb-2 social-input-wrapper">
+                            <label for="github">github Profile link</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><span class="iconify-inline" data-icon="akar-icons:github-fill"></span></span>
+                                <input type="text" id="github" name="github" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 text-end">
+                        <button class="px-5 btn theme-bg">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="cropie-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cropie-demo"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="cropie-cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="cropie-save" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</main>
+
+<%- include("../../includes/footer.ejs") %>

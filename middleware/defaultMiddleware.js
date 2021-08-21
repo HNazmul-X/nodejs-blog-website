@@ -4,6 +4,7 @@ const session = require("express-session");
 const { bindUserWithRequest } = require("./authMiddleware");
 const setLocals = require("./setLocals");
 const MongoDbSessions = require("connect-mongodb-session")(session)
+const flash = require("connect-flash")
 
 const sessionStore = new MongoDbSessions({
     uri: "mongodb://localhost:27017/BlogWithStackLearnerEJS",
@@ -11,7 +12,7 @@ const sessionStore = new MongoDbSessions({
 });
 
 
-exports.middleware = [
+const middleware = [
 
     express.static("public"),
     morgan("dev"),
@@ -27,5 +28,12 @@ exports.middleware = [
         store:sessionStore
     }),
     bindUserWithRequest(),
-    setLocals()
+    setLocals(),
+    flash()
+    
 ]
+
+exports.connectMiddleware  = app => {
+    
+    middleware.forEach(mid => app.use(mid))
+}
