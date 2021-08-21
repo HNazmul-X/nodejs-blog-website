@@ -1,3 +1,4 @@
+require("dotenv").config()
 const morgan = require("morgan");
 const express = require("express")
 const session = require("express-session");
@@ -7,10 +8,9 @@ const MongoDbSessions = require("connect-mongodb-session")(session)
 const flash = require("connect-flash")
 
 const sessionStore = new MongoDbSessions({
-    uri: "mongodb://localhost:27017/BlogWithStackLearnerEJS",
+    uri: `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@maincluster.cpis4.mongodb.net/Stack_Learner_BLOG_EJS?retryWrites=true&w=majority`,
     collection: "sessions",
 });
-
 
 const middleware = [
 

@@ -16,9 +16,17 @@ app.set("view engine", "ejs");
 
 //setting routes
 connectRoutes(app);
-error404(app)
+error404(app);
 
 //connecting to database
-mongoose.connect("mongodb://localhost:27017/BlogWithStackLearnerEJS", { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false }).then((res) => {
-    app.listen(port, console.log(chalk.bgGreen.black(`your server is running port on http://${process.env.DB_HOST}:8080`)));
-});
+mongoose
+    .connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@maincluster.cpis4.mongodb.net/Stack_Learner_BLOG_EJS?retryWrites=true&w=majority`, {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+        useFindAndModify: false,
+    })
+    .then((res) => {
+        setTimeout(() => {
+            app.listen(port, console.log(chalk.bgGreen.black(`your server is running port on http://${process.env.DB_HOST}:8080`)));
+        }, 100);
+    });
