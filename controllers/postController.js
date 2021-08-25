@@ -28,7 +28,7 @@ exports.postPostController = async (req, res, next) => {
         const profile = await ProfileModel.findOne({ user: req.user._id });
 
         if (!error.isEmpty()) {
-            return res.render("pages/dashboard/post/create-post", {
+            return res.render("pages/dashboard/post/create-post.ejs", {
                 error: error.mapped(),
                 flashMsg: Flash.getMassage(req),
                 profile: profile,
