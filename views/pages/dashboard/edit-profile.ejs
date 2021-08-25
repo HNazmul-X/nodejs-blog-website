@@ -1,0 +1,180 @@
+<%- include("../../includes/header.ejs", {title:"Edit your account"})%>
+
+<main id="create-profile-page">
+    <div class="container">
+        <div class="row dashboard-layout">
+        <%- include("./sitebar.ejs")  %>
+        <div class="col-9">
+            <div class="container mx-auto">
+                <!-- profile image form area -->
+                <section id="profile-image">
+                    <div class="p-2 mb-5 bg-light">
+                        <h1 class="text-center display-3 text-muted">Edit Your Profile</h1>
+                    </div>
+                    <div class="row w-100 mx-0">
+                        <div class="col-md-4">
+                            <div class="image-wrapper bg-light w-100 text-center p-2 box">
+                                <img src="<%= user.profilePic %>" class="img-thumbnail profile-thumb__image img-fluid"
+                                    alt="<%= user.username%>Profile Pic" />
+                            </div>
+                        </div>
+                        <div class="col-md-8 file-upload-form bg-light box">
+                            <form action="/upload/profile-image" enctype="multipart/form-data" id="profile-upload-form"
+                                method="POST">
+                                <input type="file" name="profilePic" id="profile-image-input"
+                                    class="form-control mb-3" />
+                                <div class="text-center">
+                                    <button type="reset" id="profile-remove-pic-button"
+                                        class="btn-danger btn w-100 <%= user?.profilePic.includes("default")?"d-none":"d-block" %> ">Remove
+                                        Image</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- user information details -->
+            <section id="user-info">
+                <div class="container">
+                    <form action="/dashboard/edit-profile" method="POST">
+                        <div class="primary-info">
+                            <div class="py-4">
+                                <h2 class="text-center">Give Your Details Here</h2>
+                            </div>
+                            <div class="mb-2 custom-input-wrapper">
+                                <label for="full-name">Your Full Name</label>
+                                <input type="text" id="full-name" value="<%= profile.name%> "
+                                    class="form-control <%= error.name ?"is-invalid": "" %>  " name="name" />
+                                <div class="invalid-feedback">
+                                    <%= error.name %>
+                                </div>
+                            </div>
+
+                            <div class="row w-100 custom-input-wrapper row-cols-md-2 mx-0">
+                                <div class="col mb-2 p-0 pe-3">
+                                    <label for="name">Your Title Here</label>
+                                    <input type="text" name="title" value="<%= profile.title %>"
+                                        class="form-control custom-input <%= error.title ?"is-invalid": "" %> " />
+                                    <div class="invalid-feedback">
+                                        <%= error.title %>
+                                    </div>
+                                </div>
+                                <div class="col mb-2 p-0 ps-3">
+                                    <label for="name">Your Email Adress (can't change) </label>
+                                    <input type="text" disabled value="<%= user?.email %> " name="email"
+                                        class="form-control custom-input" />
+                                </div>
+                            </div>
+
+                            <div class="custom-input-wrapper mb-2">
+                                <label for="bio">Write you bio here</label>
+                                <textarea name="bio" id="bio" class="form-control <%= error.bio ?"is-invalid": ""  %> "
+                                    cols="30" rows="7"><%= profile.bio%></textarea>
+                                <div class="invalid-feedback">
+                                    <%= error.bio %>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="socials-link">
+                            <div class="py-4 text-center">
+                                <h2>Provide your socials Link</h2>
+                            </div>
+                            <div class="row row-cols-1 row-cols-md-2">
+                                <div class="col mb-2 social-input-wrapper">
+                                    <label for="facebook">Facebook Profile link</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><span class="iconify-inline"
+                                                data-icon="akar-icons:facebook-fill"></span></span>
+                                        <input type="text" id="facebook" value="<%=profile.links.facebook || "" %>"
+                                            name="facebook"
+                                            class="form-control <%= error.facebook ?"is-invalid": "" %> " />
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        <%= error.facebook %>
+                                    </div>
+                                </div>
+                                <div class="col mb-2 social-input-wrapper">
+                                    <label for="website">websites link</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><span class="iconify-inline"
+                                                data-icon="eva:globe-2-fill"></span></span>
+                                        <input type="text" id="website" name="website"
+                                            value="<%=profile.links.website || "" %>"
+                                            class="form-control <%= error.website? 'is-invalid' : "" %> " />
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        <%= error.website %>
+                                    </div>
+                                </div>
+                                <div class="col mb-2 social-input-wrapper">
+                                    <label for="linkedin">linkedin Profile link</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><span class="iconify-inline"
+                                                data-icon="akar-icons:linkedin-fill"></span></span>
+                                        <input type="text" id="linkedin" name="linkedin"
+                                            value="<%=profile.links.linkedin || "" %>"
+                                            class="form-control <%= error.linkedin? 'is-invalid' : "" %> " />
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        <%= error.linkedin %>
+                                    </div>
+                                </div>
+                                <div class="col mb-2 social-input-wrapper">
+                                    <label for="github">github Profile link</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><span class="iconify-inline"
+                                                data-icon="akar-icons:github-fill"></span></span>
+                                        <input type="text" id="github" name="github"
+                                            value="<%=profile.links.github||""%>"
+                                            class="form-control <%= error.github? 'is-invalid' : "" %> " />
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        <%= error.linkedin %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-4 text-end">
+                                <button class="px-5 btn theme-bg"> Update Profile</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </div>
+    </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="cropie-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cropie-demo"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="cropie-cancel" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="cropie-save" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+
+
+
+</main>
+
+<%- include("../../includes/footer.ejs") %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+    <script src="/script/bootstrap.bundle.js" ></script>
+    <script src="/script/FrontendScript.js"></script>
+</body>
+
+</html>

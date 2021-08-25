@@ -19,9 +19,8 @@ const uploadMiddleware = multer({
     },
     fileFilter:(req, file, cb) => {
 
-        console.log(req, file)
 
-        const types = /png|jpg|jpeg|gif|webp/
+        const types = /png|jpg|jpeg|gif|webp|svg/
         const extName = types.test(path.extname(file.originalname).toLowerCase())
         const mimeType = types.test(file.mimetype)
         if(extName && mimeType){

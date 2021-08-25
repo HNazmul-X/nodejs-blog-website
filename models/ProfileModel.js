@@ -16,7 +16,7 @@ const profileSchema = new Schema(
             type: String,
             trim: true,
             required: true,
-            maxLength: 50,
+            maxLength: 70,
         },
         title: {
             type: String,
@@ -29,8 +29,8 @@ const profileSchema = new Schema(
             maxLength: 500,
         },
         links: {
-            fb: String,
-            twitter: String,
+            facebook: String,
+            linkedin: String,
             website: String,
             github: String,
         },

@@ -29,30 +29,39 @@
     <!-- user information details -->
     <section id="user-info">
         <div class="container">
-            <form action="" method="post">
+            <form action="/dashboard/create-profile" method="post">
                 <div class="primary-info">
                     <div class="py-4">
                         <h2 class="text-center">Give Your Details Here</h2>
                     </div>
                     <div class="mb-2 custom-input-wrapper">
                         <label for="full-name">Your Full Name</label>
-                        <input type="text" id="full-name" class="form-control" name="name" />
+                        <input type="text" id="full-name" class="form-control <%= error.name ?"is-invalid": "" %>  " name="name" />
+                        <div class="invalid-feedback">
+                            <%= error.name %> 
+                        </div>
                     </div>
 
                     <div class="row w-100 custom-input-wrapper row-cols-md-2 mx-0">
                         <div class="col mb-2 p-0 pe-3">
-                            <label for="name">Your Full Name here</label>
-                            <input type="text" name="name" class="form-control custom-input" />
+                            <label for="name">Your Title Here</label>
+                            <input type="text" name="title" class="form-control custom-input <%= error.title ?"is-invalid": "" %> " />
+                            <div class="invalid-feedback">
+                            <%= error.title %> 
+                        </div>
                         </div>
                         <div class="col mb-2 p-0 ps-3">
-                            <label for="name">Your Full Name here</label>
-                            <input type="text" name="name" class="form-control custom-input" />
+                            <label for="name">Your Email Adress (can't change) </label>
+                            <input type="text" disabled value="<%= user?.email %> " name="email" class="form-control custom-input" />
                         </div>
                     </div>
 
                     <div class="custom-input-wrapper mb-2">
                         <label for="bio">Write you bio here</label>
-                        <textarea name="bio" id="bio" class="form-control" cols="30" rows="7"></textarea>
+                        <textarea name="bio" id="bio" class="form-control <%= error.bio ?"is-invalid": ""  %> "  cols="30" rows="7"></textarea>
+                        <div class="invalid-feedback">
+                            <%= error.bio %> 
+                        </div>
                     </div>
                 </div>
 
@@ -65,28 +74,40 @@
                             <label for="facebook">Facebook Profile link</label>
                             <div class="input-group">
                                 <span class="input-group-text"><span class="iconify-inline" data-icon="akar-icons:facebook-fill"></span></span>
-                                <input type="text" id="facebook" name="facebook" class="form-control" />
+                                <input type="text" id="facebook" name="facebook" class="form-control <%= error.facebook ?"is-invalid": "" %> " />
+                            </div>
+                            <div class="invalid-feedback">
+                                <%= error.facebook %> 
                             </div>
                         </div>
                         <div class="col mb-2 social-input-wrapper">
-                            <label for="twitter">twitter Profile link</label>
+                            <label for="website">websites link</label>
                             <div class="input-group">
-                                <span class="input-group-text"><span class="iconify-inline" data-icon="akar-icons:twitter-fill"></span></span>
-                                <input type="text" id="twitter" name="twitter" class="form-control" />
+                                <span class="input-group-text"><span class="iconify-inline" data-icon="eva:globe-2-fill"></span></span>
+                                <input type="text" id="website" name="website" class="form-control <%= error.website? 'is-invalid' : "" %> " />
+                            </div>
+                            <div class="invalid-feedback">
+                                <%= error.website %> 
                             </div>
                         </div>
                         <div class="col mb-2 social-input-wrapper">
                             <label for="linkedin">linkedin Profile link</label>
                             <div class="input-group">
                                 <span class="input-group-text"><span class="iconify-inline" data-icon="akar-icons:linkedin-fill"></span></span>
-                                <input type="text" id="linkedin" name="linkedin" class="form-control" />
+                                <input type="text" id="linkedin" name="linkedin" class="form-control <%= error.linkedin? 'is-invalid' : "" %> " />
+                            </div>
+                            <div class="invalid-feedback">
+                                <%= error.linkedin %> 
                             </div>
                         </div>
                         <div class="col mb-2 social-input-wrapper">
                             <label for="github">github Profile link</label>
                             <div class="input-group">
                                 <span class="input-group-text"><span class="iconify-inline" data-icon="akar-icons:github-fill"></span></span>
-                                <input type="text" id="github" name="github" class="form-control" />
+                                <input type="text" id="github" name="github" class="form-control <%= error.github? 'is-invalid' : "" %> " />
+                            </div>
+                            <div class="invalid-feedback">
+                                <%= error.linkedin %> 
                             </div>
                         </div>
                     </div>
@@ -123,3 +144,9 @@
 </main>
 
 <%- include("../../includes/footer.ejs") %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+    <script src="/script/bootstrap.bundle.js" ></script>
+    <script src="/script/FrontendScript.js"></script>
+</body>
+
+</html>

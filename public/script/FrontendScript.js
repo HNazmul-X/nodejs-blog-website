@@ -1,10 +1,5 @@
-try {
-    if (window.history.replaceState) {
-        window.history.replaceState(null, null, window.location.href);
-    }
-} catch (error) {
-    console.log(error);
-}
+/* this script for image cropper */
+// ===================================
 
 // file reader funtion
 const gettingImageDataTofile = (file) => {
@@ -21,9 +16,6 @@ const gettingImageDataTofile = (file) => {
     });
 };
 
-/* this script for image cropper */
-// ===================================
-
 try {
     const cropieModal = new bootstrap.Modal(document.getElementById("cropie-modal"), { keyboard: false, backdrop: "static" });
     const cropieSavebutton = document.getElementById("cropie-save");
@@ -33,7 +25,6 @@ try {
     const profileThumb__image = document.querySelector(".profile-thumb__image");
     const profileUploadForm = document.getElementById("profile-upload-form");
     const profileRemoveButton = document.getElementById("profile-remove-pic-button");
-    console.log(cropieDemo);
 
     const profileImageCropper = new Croppie(cropieDemo, {
         viewport: { width: 300, height: 300 },
@@ -42,7 +33,6 @@ try {
     });
 
     imageUploadInput.addEventListener("change", async () => {
-        console.log(imageUploadInput.files);
         const file = imageUploadInput.files[0];
         gettingImageDataTofile(file).then((imageData) => {
             cropieModal.show();
@@ -96,7 +86,7 @@ try {
     };
 
     const getFileName = (name) => {
-        const types = /(.jpeg|.jpg|.png|.gif|.webp)/;
+        const types = /(.jpeg|.jpg|.png|.gif|.webp|.svg)/;
         return name.replace(types, ".png");
     };
 
@@ -114,4 +104,18 @@ try {
     };
 } catch (e) {
     console.error(e);
+}
+
+/* Post Thumnail scriptting */
+try {
+    const postImageThumnailBlock = document.querySelector(".post_image_thumbnail_box");
+    const beforeUploadContent = postImageThumnailBlock.querySelector(".before-upload");
+    const fileInput = postImageThumnailBlock.querySelector("#post-thumbnail");
+    const browserButton = postImageThumnailBlock.querySelector(".browse-button");
+
+    browserButton.onclick = () => {
+        fileInput.click();
+    };
+} catch (e) {
+    console.log(e);
 }
