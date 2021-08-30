@@ -9,58 +9,60 @@
             <!-- =============================== -->
             <!-- dashbarod page content -->
             <div class="col-9 add-post-page dashboard-content">
-                <form action="/post/create-post" method="POST">
+                <form action="/post/create-post" method="POST" enctype="multipart/form-data">
                     <div class="p-3 box mb-3">
                         <h1 class="display-4 text-center text">create a post</h1>
                     </div>
-                    <div class="box post_image_thumbnail_box mb-4">
-                        <div class="thumbnail before-upload row mx-0 100">
-                            <div class="icon col-md-6">
-                                <span class="iconify-inline" data-icon="bi:plus-square-dotted"></span>
-                            </div>
-                            <div class="col-md-6 text">
-                                <h1>Add a Post thumbnail</h1>
-                                <button class="btn browse-button theme-bg btn-primary">Browse File</button>
-                                <input type="file" class="form-control d-none"  name="thumbnail" id="post-thumbnail" />
-                            </div>
-                        </div>
+                    <div class="box  p-4 post_image_thumbnail_box mb-4">
+                        <label class="">Add a Post thumbnail</label>
+                        <input type="file" class="form-control" name="thumbnail" id="post-thumbnail" />
+
                     </div>
 
                     <div class="box p-3 mb-3 post-title">
                         <label for="post-title">Post Title</label>
-                        <input type="text" id="post-title" name="title" class="form-control theme-input <%= error.title ? "is-invalid" : "" %> " />
-                        <p class="<%= error.title? "invalid-feedback d-block" : "d-none" %> "> <%= error.title && error.title %>  </p>
+                        <input type="text" id="post-title" name="title" value="<%= value.title? value.title : ""%>"
+                            class="form-control theme-input <%= error.title ? "is-invalid" : "" %> " />
+                        <p class="<%= error.title? "invalid-feedback d-block" : "d-none" %> ">
+                            <%= error.title && error.title %> </p>
                     </div>
                     <div class="box p-3 post-body mb-4">
-                        <label for="post-content">Write your post Content</label> <br>
-                        <button type="button" class="btn theme-bg text-light btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <label for="post-content" class="fw-bolder mb-3">Write your post Content</label> <br>
+                        <button type="button" class="btn theme-bg text-light btn-lg" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
                             Click Here to Open Editor
                         </button>
-                        <p class="<%= error.body? "invalid-feedback d-block" : "d-none" %> "> <%= error.body && error.body %>  </p>
+                        <p class="<%= error.body? "invalid-feedback d-block" : "d-none" %> ">
+                            <%= error.body && error.body %> </p>
                     </div>
 
                     <!-- ===========================================================================================  
                                                      body compossing model 
                     ============================================================================================ -->
 
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-fullscreen">
-                        <div class="modal-content">
-                        <div class="modal-body p-1">
-                            <textarea name="body" class="form-control <%= error.body ? "is-invalid" : "" %> " id="tiny-mce-post-body" cols="30" rows="10"></textarea>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-fullscreen">
+                            <div class="modal-content">
+                                <div class="modal-body p-1">
+                                    <textarea name="body" class="form-control <%= error.body ? "is-invalid" : "" %> "
+                                        id="tiny-mce-post-body" cols="30" rows="10"><%= value.body? value.body : ""%></textarea>
+                                </div>
+                                <div class="modal-footer p-1">
+                                    <button type="button" class="btn text-light theme-bg" data-bs-dismiss="modal">Go
+                                        Back to Page</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="modal-footer p-1">
-                            <button type="button" class="btn text-light theme-bg" data-bs-dismiss="modal">Go Back to Page</button>
-                        </div>
-                        </div>
-                    </div>
                     </div>
 
 
                     <div class="box p-3 mb-3 post-title">
                         <label for="post-tags">Enter Atleast 5 Keywords (coma separate) </label>
-                        <input type="text" id="post-tags" placeholder="Example : tags1, tags2, tags 3" name="tags" class="form-control theme-input <%= error.tags ? "is-invalid" : "" %> " />
-                        <p class="<%= error.tags? "invalid-feedback d-block" : "d-none" %> "> <%= error.tags && error.tags %>  </p>
+                        <input type="text" id="post-tags" placeholder="Example : tags1, tags2, tags 3" name="tags" value="<% value.tags ? value.tags : "" %>"
+                            class="form-control theme-input <%= error.tags ? "is-invalid" : "" %> " />
+                        <p class="<%= error.tags? "invalid-feedback d-block" : "d-none" %> ">
+                            <%= error.tags && error.tags %> </p>
 
                     </div>
 
@@ -78,9 +80,11 @@
 
 <%- include("../../../includes/footer.ejs") %>
 <script src="/script/bootstrap.bundle.js"></script>
-<script src="https://cdn.tiny.cloud/1/y4du8bkxgreyx2wxolbhp6jmgcv13i39xgq3oaarjadfl3ib/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/y4du8bkxgreyx2wxolbhp6jmgcv13i39xgq3oaarjadfl3ib/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
 <script src="/script/defaultFrontend.js"></script>
 <script defer src="/script/tinymce.js"></script>
+<script src="/script/image-upload.js"></script>
 </body>
 
 </html>

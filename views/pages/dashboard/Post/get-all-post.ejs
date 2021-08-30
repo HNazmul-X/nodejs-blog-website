@@ -1,0 +1,57 @@
+<%- include("../../../includes/header.ejs", {title:"Edit your account"})%>
+
+<main id="create-profile-page">
+    <div class="container">
+        <div class="row dashboard-layout">
+            <!-- imported sitebar -->
+            <%- include("../sitebar.ejs") %>
+
+            <!-- =============================== -->
+            <!-- dashbarod page content -->
+            <div class="col-9 add-post-page dashboard-content">
+                <% if (posts.length <= 0) { %>
+                <% console.log("inside condition") %>
+                <div class="p-5 box bg-light text-muted">
+                    <h1>Sorry You don't have any post</h1>
+                    <div class="text-center">
+                        <a href="/post/create-post" class="d-inline-block btn theme-bg text-light">Create Post</a>
+                    </div>
+                </div>
+                <% } else{ %>
+
+                <div class="p-3 box mb-5 text-center">
+                    <h1 class="text-muted">Your All Post</h1>
+                </div>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
+                    <% posts.forEach(post => { %>
+
+                    <div class="col">
+                        <div class="card box">
+                            <img src="<%= post.thumbnail ? post.thumbnail : "/images/blog-placeholder.png"%>"
+                                class="card-img-top" alt="<%=profile.name%>'s Post it is">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="/post/edit/<%=post._id%>" class="text-decoration-none d-inline-block text-muted"><%= post?.title.substr(0, 30)%>...</a></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div>
+
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+</main>
+
+<%- include("../../../includes/footer.ejs") %>
+<script src="/script/bootstrap.bundle.js"></script>
+<script src="https://cdn.tiny.cloud/1/y4du8bkxgreyx2wxolbhp6jmgcv13i39xgq3oaarjadfl3ib/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
+<script src="/script/defaultFrontend.js"></script>
+<script defer src="/script/tinymce.js"></script>
+<script src="/script/image-upload.js"></script>
+</body>
+
+</html>

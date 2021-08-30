@@ -1,6 +1,5 @@
 @import "util";
 
-
 /* sitebars css */
 .dashboard-layout {
     .sitebar {
@@ -33,7 +32,7 @@
                     text-decoration: none;
                     padding: 10px;
                     display: inline-block;
-                    color: $text;;
+                    color: $text;
                     font-size: 18px;
                 }
             }
@@ -82,7 +81,7 @@
             margin-bottom: 50px;
             .social-input-wrapper {
                 margin-bottom: 30px !important;
-                .invalid-feedback{
+                .invalid-feedback {
                     display: block;
                 }
                 .input-group {
@@ -95,7 +94,7 @@
                         padding-left: 20px;
                         font-size: 20px;
                         color: $text;
-                        border-top-left-radius: 40px;;
+                        border-top-left-radius: 40px;
                         border-bottom-left-radius: 40px;
                     }
                 }
@@ -104,44 +103,44 @@
     }
 }
 
-
 /* create-post page css */
 .add-post-page.dashboard-content {
-    .thumbnail {
-        padding: 50px;
-        margin-bottom: 30px;
-        .icon {
-            text-align: center;
-            .iconify {
-                font-size: 200px;
-                color: #aed0fc;
+    .post_image_thumbnail_box {
+        .thumbnail {
+            padding: 50px;
+            margin-bottom: 30px;
+            .thumbnail__image{
+                img{
+                    width:100%
+                }
+            }
+            
+            .text {
+                text-align: center;
+                padding: 20px;
+                color: #dfdfdf;
+                margin-bottom: 20px;
+                display: grid;
+                place-items: center;
+                h1 {
+                    margin-bottom: 30px;
+                }
             }
         }
-        .text{
-            text-align: center;
-            padding:20px;
-            color:#dfdfdf;
-            margin-bottom: 20px;
-            display: grid;
-            place-items: center;
-            h1{
-                margin-bottom: 30px;
+        .post-title,
+        .post-body {
+            label {
+                font-size: 18px;
+                margin-bottom: 10px;
+                color: $text;
             }
-        }
-
-    }
-    .post-title, .post-body{
-        label{
-            font-size:18px;
-            margin-bottom: 10px;
-            color:$text;
-        }
-        input{
-            padding:20px;
-            background:$html;
-        }
-        textarea{
-            background:$html !important;
+            input {
+                padding: 20px;
+                background: $html;
+            }
+            textarea {
+                background: $html !important;
+            }
         }
     }
 }

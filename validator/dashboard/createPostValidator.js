@@ -9,10 +9,11 @@ module.exports = [
         .withMessage("Post cannot be empty")
         .custom((value) => {
             const node = cheerio.load(value);
-            const text = node.text();
+            const regex = /\s+/g;
+            const totalWord = node.text().match(regex).length
 
-            if (text.length > 5000) {
-                throw new Error("Body can Not be greater than 500 chars");
+            if (totalWord> 1000) {
+                throw new Error("Body can Not be greater than 1000 words");
             }
             return true;
         }),
