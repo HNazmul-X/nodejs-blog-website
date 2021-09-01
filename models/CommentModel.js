@@ -1,7 +1,5 @@
 // user, post , body, replies:{user, body, createdAT}
 const { Schema, model } = require("mongoose");
-const PostModel = require("./PostModel");
-const UserModel = require("./UserModel");
 
 const commentSchema = new Schema({
     user: {
@@ -37,7 +35,7 @@ const commentSchema = new Schema({
             },
         },
     ],
-});
+}, {timestamps:true});
 
 
 const CommentModel = model("Comment", commentSchema)

@@ -36,7 +36,7 @@
                                 <%= filter? filter : "Search Filter" %>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="filter-drop-down">
-                                <li><a class="dropdown-item" href="/?filter=latest">Latest  </a></li>
+                                <li><a class="dropdown-item" href="/?filter=latest">Latest </a></li>
                                 <li><a class="dropdown-item" href="/?filter=week">Week</a></li>
                                 <li><a class="dropdown-item" href="/?filter=month">Month</a></li>
                                 <li><a class="dropdown-item" href="/?filter=all">All</a></li>
@@ -48,7 +48,6 @@
 
 
             <% if (posts.length === 0) { %>
-            <% console.log(posts.length) %>
 
             <div class="box p-5 text-center mt-4">
                 <img src="/images/nothing-to-show.svg" class="w-50 mb-5" alt="">
@@ -56,25 +55,43 @@
                 <div class="p-3"></div>
             </div>
             <% } else { %>
-
             <% posts.forEach(post => { %>
-                        <div class="card box my-5" style="width:100%">
-                        <div class="card-body">
-                             <a href="/post/<%= post._id %>" class="text-decoration-none text-dark">
-                                 <h4 class="card-title"><%= post.title.substr(0,70)%>... </h4>
-                             <p class="card-text fs-5 text-muted"><%= truncate(post.body) %>... </p>
-                             </a>
-                        </div>
-                        <div class="p-2 text-end">
-                            <p class="small text-muted mb-0"> <%= blogCreatedMoment(post.createdAt)%> , &nbsp; posted by <%="H. Nazmul Hassan"%> &nbsp; , <%= post.readtimes %>  </p>
-                        </div>
-                        <img src="<%= post.thumbnail ? post.thumbnail : "/images/blog-placeholder.png" %>" class="w-100 "alt="">
+            <div class="card box my-5" style="width:100%">
+                <div class="card-body">
+                    <a href="/post/<%= post._id %>" class="text-decoration-none text-dark">
+                        <h4 class="card-title"><%= post.title.substr(0,70)%>... </h4>
+                        <p class="card-text fs-5 text-muted"><%= truncate(post.body) %>... </p>
+                    </a>
+                </div>
+                <div class="p-2 text-end">
+                    <p class="small text-muted mb-0"> <%= blogCreatedMoment(post.createdAt)%> , &nbsp; posted by
+                        <%=post.author.username%> &nbsp; , <%= post.readtimes %> </p>
+                </div>
+                <img src="<%= post.thumbnail ? post.thumbnail : "/images/blog-placeholder.png" %>" class="w-100 "
+                    alt="">
 
-                    </div>
+            </div>
 
             <% }) %>
 
             <%  } %>
+
+            <!-- pagination -->
+            <% if (totalPage >=1) { %>
+                         <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item <%= currentPage ===1 && "disabled" %>">
+                        <a class="page-link " href="/<%=`?filter=${filter}&page=${currentPage -1}`%>" tabindex="-1" aria-disabled="true"><small>Previous</small></a>
+                    </li>
+                    <% for( let i = 1; i <= totalPage; i++ ) { %>
+                        <li class="page-item  <%=currentPage ===i && "active"%> "><a class="page-link " href="/?<%=`filter=${filter}&page=${i}`%> "> <%= i %> </a></li>
+                    <% } %>
+                    <li class="page-item <%= currentPage === totalPage && "disabled" %> ">
+                        <a class="page-link" href="/<%=`?filter=${filter}&page=${currentPage +1}`%>"><small>Next</small></a>
+                    </li>
+                </ul>
+            </nav>
+            <% } %>
         </div>
     </div>
 

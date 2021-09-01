@@ -1,3 +1,4 @@
+const apiRouter = require("../API/routes/apiRoutes");
 const playgroundRouter = require("../playground/play");
 const { authRouter } = require("./authRouter");
 const dashboardRoutes = require("./dashboardRoute");
@@ -9,6 +10,10 @@ const routes = [
     {
         path: "/auth",
         handler: authRouter,
+    },
+    {
+        path: "/api",
+        handler: apiRouter ,
     },
     {
         path: "/dashboard",
@@ -41,7 +46,7 @@ const routes = [
 exports.connectRoutes = (app) => {
     routes.forEach(route => {
         if(route.path === "/"){
-            app.get(route.path, route.handler)
+            app.use(route.path, route.handler)
         } 
         else{
             app.use(route.path, route.handler)
