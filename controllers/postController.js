@@ -12,7 +12,7 @@ exports.getAllPost = async (req, res, next) => {
         } else {
             const posts = await PostModel.find({author:req.user._id});
             
-                res.render("pages/dashboard/post/get-all-post", {
+                res.render("pages/dashboard/Post/get-all-post", {
                     flashMsg: Flash.getMassage(req),
                     profile,
                     error: {},
@@ -28,7 +28,7 @@ exports.postGetController = async (req, res, next) => {
     try {
         const profile = await ProfileModel.findOne({ user: req.user._id });
         if (profile) {
-            res.render("pages/dashboard/post/create-post", {
+            res.render("pages/dashboard/Post/create-post", {
                 flashMsg: Flash.getMassage(req),
                 profile: profile,
                 error: {},
@@ -50,7 +50,7 @@ exports.postPostController = async (req, res, next) => {
         const profile = await ProfileModel.findOne({ user: req.user._id });
 
         if (!error.isEmpty()) {
-            return res.render("pages/dashboard/post/create-post", {
+            return res.render("pages/dashboard/Post/create-post", {
                 error: error.mapped(),
                 flashMsg: Flash.getMassage(req),
                 profile: profile,
@@ -111,7 +111,7 @@ exports.editPostGetController = async (req, res, next) => {
         const error = new Error("Post not Found");
         throw error;
     } else {
-        res.render("pages/dashboard/post/edit-post", {
+        res.render("pages/dashboard/Post/edit-post", {
             flashMsg: Flash.getMassage(req),
             post,
             error: {},
@@ -134,7 +134,7 @@ exports.editPostPostController = async (req, res, next) => {
         } else {
             if (!error.isEmpty()) {
                 req.flash("fail", "please check the form");
-                return res.render("pages/dashboard/post/edit-post", {
+                return res.render("pages/dashboard/Post/edit-post", {
                     error: error.mapped(),
                     flashMsg: Flash.getMassage(req),
                     profile: profile,
