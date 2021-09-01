@@ -1,0 +1,92 @@
+<%- include("../../includes/header.ejs",{title:"welcome Home page"})%>
+
+<div class="container">
+    <div class="row dashboard-layout">
+        <!-- imported sitebar -->
+        <% if (isLoggedIn) { %>
+        <%- include("../dashboard/sitebar.ejs") %>
+        <% } else { %>
+
+        <div class="col-3 h-100 box">
+            <div class="p-4 text-center">
+                <img src="/images/unlock image.png" class="w-100 mb-3" alt="">
+                <h5 class="text-center"><a href="/auth/signup">Create an account</a> or <a href="/auth/login"> Login</a>
+                    to get <br /> <span class="fs-3"> Full access</span></h5>
+            </div>
+        </div>
+        <% } %>
+
+
+        <!-- =============================== -->
+        <!-- dashbarod page content -->
+        <div class="col-9 col-md-8 col-lg-7 mx-auto add-post-page dashboard-content">
+
+            <div class="box p-5 search-pannel">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="input-group">
+                            <span class="input-group-text">@</span>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="dropdown">
+                            <button class="btn  dropdown-toggle" type="button" id="filter-drop-down"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <%= filter? filter : "Search Filter" %>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="filter-drop-down">
+                                <li><a class="dropdown-item" href="/?filter=latest">Latest  </a></li>
+                                <li><a class="dropdown-item" href="/?filter=week">Week</a></li>
+                                <li><a class="dropdown-item" href="/?filter=month">Month</a></li>
+                                <li><a class="dropdown-item" href="/?filter=all">All</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <% if (posts.length === 0) { %>
+            <% console.log(posts.length) %>
+
+            <div class="box p-5 text-center mt-4">
+                <img src="/images/nothing-to-show.svg" class="w-50 mb-5" alt="">
+                <h3>Ops... Here is nothing to show</h3>
+                <div class="p-3"></div>
+            </div>
+            <% } else { %>
+
+            <% posts.forEach(post => { %>
+                        <div class="card box my-5" style="width:100%">
+                        <div class="card-body">
+                             <a href="/post/<%= post._id %>" class="text-decoration-none text-dark">
+                                 <h4 class="card-title"><%= post.title.substr(0,70)%>... </h4>
+                             <p class="card-text fs-5 text-muted"><%= truncate(post.body) %>... </p>
+                             </a>
+                        </div>
+                        <div class="p-2 text-end">
+                            <p class="small text-muted mb-0"> <%= blogCreatedMoment(post.createdAt)%> , &nbsp; posted by <%="H. Nazmul Hassan"%> &nbsp; , <%= post.readtimes %>  </p>
+                        </div>
+                        <img src="<%= post.thumbnail ? post.thumbnail : "/images/blog-placeholder.png" %>" class="w-100 "alt="">
+
+                    </div>
+
+            <% }) %>
+
+            <%  } %>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+<%- include("../../includes/footer.ejs") %>
+<script src="/script/bootstrap.bundle.js"></script>
+</body>
+
+</html>

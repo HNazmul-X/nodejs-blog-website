@@ -80,7 +80,6 @@ exports.removeProfilePic = (req, res, next) => {
 };
 
 exports.uploadPostImageController = (req, res, next) => {
-    console.log(req.body)
     if(req.file){
         return res.status(200).json({
             imageURL:`/upload/${req.file.filename}`

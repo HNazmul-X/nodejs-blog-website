@@ -45,3 +45,25 @@
         font-size: 17px;;
     }
 }
+
+
+
+/* Home Page css here */
+.search-pannel{
+    .input-group{
+        border-color: transparent;
+        
+        .input-group-text{
+            background:$html;
+            border-top-left-radius: 50px;
+            border-bottom-left-radius: 50px;
+            padding-left: 50px;
+        }
+    }
+    input.form-control{
+        background:$html;
+        border-radius: 50px;
+        font-size: 18px;
+        padding:10px;
+    }
+}

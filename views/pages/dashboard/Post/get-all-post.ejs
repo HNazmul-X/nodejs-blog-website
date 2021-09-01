@@ -10,7 +10,6 @@
             <!-- dashbarod page content -->
             <div class="col-9 add-post-page dashboard-content">
                 <% if (posts.length <= 0) { %>
-                <% console.log("inside condition") %>
                 <div class="p-5 box bg-light text-muted">
                     <h1>Sorry You don't have any post</h1>
                     <div class="text-center">
@@ -25,7 +24,7 @@
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
                     <% posts.forEach(post => { %>
 
-                    <div class="col">
+                    <div class="col mb-3">
                         <div class="card box">
                             <img src="<%= post.thumbnail ? post.thumbnail : "/images/blog-placeholder.png"%>"
                                 class="card-img-top" alt="<%=profile.name%>'s Post it is">

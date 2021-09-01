@@ -1,6 +1,7 @@
 const playgroundRouter = require("../playground/play");
 const { authRouter } = require("./authRouter");
 const dashboardRoutes = require("./dashboardRoute");
+const homeRouter = require("./homeRoutes");
 const postRouter = require("./postRoute");
 const uploadRouter = require("./uploadRouter");
 
@@ -27,11 +28,7 @@ const routes = [
     },
     {
         path: "/",
-        handler: (req, res) => {
-            res.json({
-                signupPage: "http://localhost:8080/auth/signup",
-            });
-        },
+        handler:homeRouter,
     },
     {
         path: "*",

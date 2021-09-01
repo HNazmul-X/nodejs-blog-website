@@ -10,5 +10,11 @@ postRouter.get("/edit/:postId", [isAuthenticate], editPostGetController)
 postRouter.post("/edit/:postId", [isAuthenticate,uploadMiddleware.single("thumbnail"),createPostValidator ], editPostPostController)
 postRouter.get("/edit/delete/:postId", [isAuthenticate], deletePostGetController)
 postRouter.get("/", [isAuthenticate],getAllPost )
+postRouter.get("/:postId", (req, res) => {
+    console.log(req.params.postId)
+    res.json({
+        massage:"you are looking for this post"+req.params.postId
+    })
+})
 
 module.exports = postRouter;

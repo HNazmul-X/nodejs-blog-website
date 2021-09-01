@@ -26,7 +26,5 @@ mongoose
         useFindAndModify: false,
     })
     .then((res) => {
-        setTimeout(() => {
-            app.listen(port, console.log(chalk.bgGreen.black(`your server is running port on http://${process.env.DB_HOST}:8080`)));
-        }, 100);
+        app.listen(port, console.log(chalk.bgGreen.black(`your server is running port on http://${process.env.DB_HOST}:8080`)));
     });

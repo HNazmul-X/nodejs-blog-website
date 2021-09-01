@@ -11,8 +11,6 @@ exports.getAllPost = async (req, res, next) => {
             return res.redirect("/dashboard/create-profile");
         } else {
             const posts = await PostModel.find({author:req.user._id});
-            console.log({post: posts}, typeof posts)
-            console.log(posts)
             
                 res.render("pages/dashboard/post/get-all-post", {
                     flashMsg: Flash.getMassage(req),
@@ -168,7 +166,6 @@ exports.deletePostGetController = async (req, res, next) => {
         const profile = await ProfileModel.findOne({ user: req.user._id });
 
         if (profile) {
-            console.log(profile);
 
             await PostModel.findOneAndDelete({ _id: postId, author: req.user._id });
             await ProfileModel.findOneAndUpdate(
