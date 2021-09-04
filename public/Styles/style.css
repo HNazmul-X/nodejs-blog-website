@@ -326,12 +326,15 @@ input:focus,
 
 .sign-up-form label,
 .sign-up-form p,
-.sign-up-form span, .sign-up-form input, .sign-up-form .form-control {
+.sign-up-form span,
+.sign-up-form input,
+.sign-up-form .form-control {
   color: #7F7C7C;
   font-weight: lighter;
 }
 
-.sign-up-form input, .sign-up-form .form-control {
+.sign-up-form input,
+.sign-up-form .form-control {
   font-weight: 500;
   color: dimgray;
   font-size: 17px;
@@ -354,6 +357,48 @@ input:focus,
   border-radius: 50px;
   font-size: 18px;
   padding: 10px;
+}
+
+.home-post-card .card-img-cover {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-post-card .card-img-cover:hover .icons-area {
+  right: 0px;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.home-post-card .card-img-cover .icons-area {
+  width: 100px;
+  position: absolute;
+  right: -100%;
+  background: rgba(0, 0, 0, 0.562);
+  color: white;
+  top: 0px;
+  height: 100%;
+  -webkit-transition: 0.9s ease-in-out;
+  transition: 0.9s ease-in-out;
+}
+
+.icon-bookmark {
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.icon-bookmark .iconify {
+  font-size: 35px;
+}
+
+.icon-bookmark:active {
+  background: rgba(255, 255, 255, 0.418);
+}
+
+.add-bookmark-text {
+  font-size: 13px;
+  font-weight: lighter !important;
 }
 
 * {

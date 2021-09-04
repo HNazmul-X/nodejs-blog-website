@@ -57,7 +57,7 @@ exports.postPostController = async (req, res, next) => {
                 value: { title, body, tags },
             });
         } else {
-            let thumbnail;
+            let thumbnail = "/images/blog-placeholder.png";
 
             if (tags) {
                 tags = tags.split(",");
@@ -183,3 +183,38 @@ exports.deletePostGetController = async (req, res, next) => {
         next(e);
     }
 };
+
+
+exports.singlePostView = async (req, res, next) => {
+
+    const {postId} = req.params
+
+    const post = await PostModel.findOne({_id:postId}).populate("author", "username profilePic")
+    .populate({
+        path:"comments", 
+        populate:{
+            path:"user",
+            select:"user profilePic"
+        }
+    })
+    .populate({
+        path:"comments",
+        populate:{
+            path:"replies.user",
+            select:"username profilePics"
+        }
+    })
+    
+    let profile = null
+
+    if(req.user){
+       profile = await ProfileModel.findOne({user:req.user._id})
+    }
+
+    res.render("pages/dashboard/Post/single-post-view", {
+        flashMsg:Flash,
+        profile,
+        post
+    })
+
+}

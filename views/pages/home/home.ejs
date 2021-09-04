@@ -3,19 +3,7 @@
 <div class="container">
     <div class="row dashboard-layout">
         <!-- imported sitebar -->
-        <% if (isLoggedIn) { %>
         <%- include("../dashboard/sitebar.ejs") %>
-        <% } else { %>
-
-        <div class="col-3 h-100 box">
-            <div class="p-4 text-center">
-                <img src="/images/unlock image.png" class="w-100 mb-3" alt="">
-                <h5 class="text-center"><a href="/auth/signup">Create an account</a> or <a href="/auth/login"> Login</a>
-                    to get <br /> <span class="fs-3"> Full access</span></h5>
-            </div>
-        </div>
-        <% } %>
-
 
         <!-- =============================== -->
         <!-- dashbarod page content -->
@@ -56,7 +44,7 @@
             </div>
             <% } else { %>
             <% posts.forEach(post => { %>
-            <div class="card box my-5" style="width:100%">
+            <div class="card box my-5 home-post-card" style="width:100%">
                 <div class="card-body">
                     <a href="/post/<%= post._id %>" class="text-decoration-none text-dark">
                         <h4 class="card-title"><%= post.title.substr(0,70)%>... </h4>
@@ -67,9 +55,25 @@
                     <p class="small text-muted mb-0"> <%= blogCreatedMoment(post.createdAt)%> , &nbsp; posted by
                         <%=post.author.username%> &nbsp; , <%= post.readtimes %> </p>
                 </div>
-                <img src="<%= post.thumbnail ? post.thumbnail : "/images/blog-placeholder.png" %>" class="w-100 "
-                    alt="">
+                <div class="w-100 card-img-cover">
+                    <img src="<%= post.thumbnail ? post.thumbnail : "/images/blog-placeholder.png" %>" class="w-100 "
+                        alt="">
+                    <% if (user) { %>
+                    <div id="" class="icons-area">
+                        <div id="bookmark-parent" data-post-id="<%= post._id %> " class="icon-bookmark">
 
+                            <% if (profile.bookmarks.includes(post._id)) { %>
+                                <span class="iconify-inline" data-icon="clarity:bookmark-solid"></span>
+                                <h6 class="add-bookmark-text">added</h6>
+                            <% } else {%>
+                                <span class="iconify-inline" data-icon="bytesize:bookmark"></span>
+                                <h6 class="add-bookmark-text">Add to bookmark</h6>
+                             <% }  %>
+                        </div>
+                    </div>
+                    <% } %>
+
+                </div>
             </div>
 
             <% }) %>
@@ -78,16 +82,19 @@
 
             <!-- pagination -->
             <% if (totalPage >=1) { %>
-                         <nav aria-label="Page navigation example">
+            <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <li class="page-item <%= currentPage ===1 && "disabled" %>">
-                        <a class="page-link " href="/<%=`?filter=${filter}&page=${currentPage -1}`%>" tabindex="-1" aria-disabled="true"><small>Previous</small></a>
+                        <a class="page-link " href="/<%=`?filter=${filter}&page=${currentPage -1}`%>" tabindex="-1"
+                            aria-disabled="true"><small>Previous</small></a>
                     </li>
                     <% for( let i = 1; i <= totalPage; i++ ) { %>
-                        <li class="page-item  <%=currentPage ===i && "active"%> "><a class="page-link " href="/?<%=`filter=${filter}&page=${i}`%> "> <%= i %> </a></li>
+                    <li class="page-item  <%=currentPage ===i && "active"%> "><a class="page-link "
+                            href="/?<%=`filter=${filter}&page=${i}`%> "> <%= i %> </a></li>
                     <% } %>
                     <li class="page-item <%= currentPage === totalPage && "disabled" %> ">
-                        <a class="page-link" href="/<%=`?filter=${filter}&page=${currentPage +1}`%>"><small>Next</small></a>
+                        <a class="page-link"
+                            href="/<%=`?filter=${filter}&page=${currentPage +1}`%>"><small>Next</small></a>
                     </li>
                 </ul>
             </nav>
@@ -104,6 +111,7 @@
 
 <%- include("../../includes/footer.ejs") %>
 <script src="/script/bootstrap.bundle.js"></script>
+<script src="/script/bookmark.js"></script>
 </body>
 
 </html>

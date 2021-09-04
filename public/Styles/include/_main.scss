@@ -34,36 +34,79 @@
     @extend .shadow-3d-2;
     label,
     p,
-    span,input, .form-control {
-        color:$text;
+    span,
+    input,
+    .form-control {
+        color: $text;
         font-weight: lighter;
     }
 
-    input, .form-control{
+    input,
+    .form-control {
         font-weight: 500;
-        color:dimgray;
-        font-size: 17px;;
+        color: dimgray;
+        font-size: 17px;
     }
 }
 
-
-
 /* Home Page css here */
-.search-pannel{
-    .input-group{
+.search-pannel {
+    .input-group {
         border-color: transparent;
-        
-        .input-group-text{
-            background:$html;
+
+        .input-group-text {
+            background: $html;
             border-top-left-radius: 50px;
             border-bottom-left-radius: 50px;
             padding-left: 50px;
         }
     }
-    input.form-control{
-        background:$html;
+    input.form-control {
+        background: $html;
         border-radius: 50px;
         font-size: 18px;
-        padding:10px;
+        padding: 10px;
     }
+}
+
+.home-post-card {
+    .card-img-cover {
+        position: relative;
+        overflow: hidden;
+        &:hover {
+            .icons-area {
+                right: 0px;
+                transition: 0.3s ease-in-out;
+            }
+        }
+
+        .icons-area {
+            width: 100px;
+            position: absolute;
+            right: -100%;
+            background: rgba(0, 0, 0, 0.562);
+            color: white;
+            top: 0px;
+            height: 100%;
+            transition: 0.9s ease-in-out;
+
+        }
+    }
+}
+
+.icon-bookmark {
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    .iconify {
+        font-size: 35px;
+    }
+
+    &:active{
+        background:rgba(255, 255, 255, 0.418);
+    }
+}
+.add-bookmark-text {
+    font-size: 13px;
+    font-weight: lighter !important;
 }
