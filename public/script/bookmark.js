@@ -2,7 +2,6 @@ window.onload = function () {
     const bookmarkAllParents = document.querySelectorAll("#bookmark-parent");
     [...bookmarkAllParents].forEach((bookmarkParent) => {
         const { postId } = bookmarkParent.dataset;
-        console.log(postId);
 
         bookmarkParent.addEventListener("click", () => {
             fetch(`/api/bookmarks/${postId}`, {

@@ -110,3 +110,36 @@
     font-size: 13px;
     font-weight: lighter !important;
 }
+
+
+/* comment card */
+.comment-card{
+    padding:10px;
+    border-radius: 10px;
+    margin: 10px auto;
+
+    .comment-image{
+        width:50px;
+        height: 50px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    .comment-body{
+        width: 100%
+    }
+}
+/* reply card css */
+.reply-card{
+    border: 1px solid rgba(201, 201, 201, 0.493);
+    border-radius: 10px;
+    margin: 10px auto;
+    font-size:14px;
+    padding:5px;
+    .reply-image{
+        width:30px;
+        height:30px;
+        object-fit: cover;
+    }    
+}

@@ -1,118 +1,154 @@
 <%- include("../../../includes/header.ejs", {title:"Edit your account"})%>
 
 <main id="create-profile-page">
-    <div class="container">
-        <div class="row dashboard-layout">
-            <!-- imported sitebar -->
-            <%- include("../sitebar.ejs") %>
+	<div class="container">
+		<div class="row dashboard-layout">
+			<!-- imported sitebar -->
+			<%- include("../sitebar.ejs") %>
 
-            <!-- =============================== -->
-            <!-- dashbarod page content -->
-            <div class="col-9 add-post-page dashboard-content">
-                <div class="box w-100">
-                    <div class="w-100 single-post__image mb-2">
-                        <img src="<%= post.thumbnail %>" class="w-100"
-                            alt="<% user?.username ? user?.username : '' %>'s Post image">
-                    </div>
+			<!-- =============================== -->
+			<!-- dashbarod page content -->
+			<div class="col-9 add-post-page dashboard-content">
+				<div class="box w-100">
+					<div class="w-100 single-post__image mb-2">
+						<img src="<%= post?.thumbnail %>" class="w-100" alt="<% user?.username ? user?.username : '' %>'s Post image">
+					</div>
 
-                    <div class="single-post__title-and-info">
-                        <div class="title px-4 text-muted">
-                            <h1><%= post.title %></h1>
-                        </div>
-                        <div class="d-flex align-items-center flex-wrap justify-content-evenly text-muted p-2">
-                            <div class="col p-2">
-                                <p class="small text-muted mb-0"> <%= blogCreatedMoment(post.createdAt)%> , &nbsp;
-                                    posted by
-                                    <%=post.author.username%> &nbsp; , <%= post.readtimes %> </p>
-                            </div>
-                            <% if (user) { %>
-                            <div class="col">
-                                <div id="bookmark-parent" data-post-id="<%= post._id %> " class="icon-bookmark p-0">
+					<div class="single-post__title-and-info">
+						<div class="title px-4 text-muted">
+							<h1><%= post?.title %></h1>
+						</div>
+						<div class="d-flex align-items-center flex-wrap justify-content-evenly text-muted p-2">
+							<div class="col p-2">
+								<p class="small text-muted mb-0"> <%= blogCreatedMoment(post?.createdAt)%> , &nbsp;
+									posted by
+									<%=post?.author.username%> &nbsp; , <%= post.readtimes %> </p>
+							</div>
+							<% if (user) { %>
+							<div class="col">
+								<div id="bookmark-parent" data-post-id="<%= post._id %> " class="icon-bookmark p-0">
 
-                                    <% if (profile.bookmarks.includes(post._id)) { %>
-                                    <span class="iconify-inline" data-icon="clarity:bookmark-solid"></span>
-                                    <h6 class="add-bookmark-text">added</h6>
-                                    <% } else {%>
-                                    <span class="iconify-inline" data-icon="bytesize:bookmark"></span>
-                                    <h6 class="add-bookmark-text">Add to bookmark</h6>
-                                    <% }  %>
-                                </div>
-                            </div>
-                            <% } %>
-                        </div>
+									<% if (profile.bookmarks.includes(post._id)) { %>
+									<span class="iconify-inline" data-icon="clarity:bookmark-solid"></span>
+									<h6 class="add-bookmark-text">added</h6>
+									<% } else {%>
+									<span class="iconify-inline" data-icon="bytesize:bookmark"></span>
+									<h6 class="add-bookmark-text">Add to bookmark</h6>
+									<% }  %>
+								</div>
+							</div>
+							<% } %>
+						</div>
 
-                        <div class="post-body p-3">
-                            <%-post.body %>
-                        </div>
+						<div class="post-body p-3">
+							<%-post.body %>
+						</div>
 
-                        <div class="like-and-comment-holder px-3 py-4">
-                            <% if (user) { %>
-                            <div role="group" id="like-dislike-button-group" class=" btn-group btn-group-lg">
-                                <button data-post-id="<%= post?._id %>" class="btn likebtn btn-success"><%= post.likes.includes(user._id)? "liked" : "like" %>     ( <%= post.likes.length%> )</button>
-                                <button data-post-id="<%= post?._id %>" class="btn dislikebtn btn-danger"> <%= post.dislikes.includes(user._id) ? "disliked" : "dislikes" %>  ( <%= post.dislikes.length  %> )</button>
-                            </div>
-
-
-                            <div class="leave-comments my-5">
-                                <div class="col-12 mx-auto">
-                                    <div class="input-group">
-                                        <input type="text" placeholder="leave a comments here"
-                                            class="form-control fs-5 p-3">
-                                        <button class="input-group-text px-2 px-md-5 btn btn-secondary">Submit</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <% if (post.comments.length === 0) { %>
-                            <p class="text-center text-muted">Here is no Comments</p>
-                            <% } else { %>
-
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0">
-                                    <img src="<% post.comments.profilePic%> "
-                                        alt="<% post.comments.username %>'s Comments' ">
-                                </div>
-                                <div class="flex-grow-1 ms-3">
-                                    <h5><%= post.comments.username %> </h5>
-                                    <p class="text-muted mt-2"> <%= post.comments.body %> </p>
-                                </div>
-                            </div>
+						<div class="like-and-comment-holder px-3 py-4">
+							<% if (user) { %>
+							<div role="group" id="like-dislike-button-group" class=" btn-group btn-group-lg">
+								<button data-post-id="<%= post?._id %>" class="btn likebtn btn-success"><%= post?.likes.includes(user._id)? "liked" : "like" %>
+									( <%= post?.likes.length%> )</button>
+								<button data-post-id="<%= post?._id %>" class="btn dislikebtn btn-danger">
+									<%= post?.dislikes.includes(user._id) ? "disliked" : "dislikes" %> (
+									<%= post?.dislikes.length  %> )</button>
+							</div>
 
 
-                            <% } %>
+							<div class="leave-comments my-5">
+								<div class="col-12 mx-auto">
+									<div class="input-group">
+										<input id="comment-input" type="text" placeholder="leave a comments here" class="form-control fs-5 p-3">
+										<button id="comment-submit-btn" class="input-group-text px-2 px-md-5 btn btn-secondary">Submit</button>
+									</div>
+								</div>
+							</div>
+
+							<!-- comment holder area start -->
+							<div data-post-id="<%=post?._id %> " id="comment-holder">
+								<% if (post?.comments.length === 0) { %>
+								<p class="text-center no-comment text-muted">Here is no Comments</p>
+								<% } else { %>
+
+								<% [...post?.comments].forEach((comment, index) => { %>
+								<div class="comment-card border">
+									<div class="d-flex">
+										<div class="flex-shrink-0">
+											<img class="comment-image" src="<%=comment.user.profilePic%>" alt="<% comment.username %>'s Comments' ">
+										</div>
+										<div class="flex-grow-1 ms-3 comment-body">
+											<h5><%= comment.user.username %> </h5>
+											<p class="text-muted my-1"> <%=comment.body %> </p>
+											<p class="text-muted small mb-1">
+												<a class="" data-bs-toggle="collapse" href="#collapse<%= comment._id %>" role="button">Leave a Reply </a>
+
+											</p>
+										</div>
+									</div>
+
+									<div data-comment-id="<%= comment._id %> " id="reply-holder" class=" ps-2 ps-md-5">
+										<div class="collapse" id="collapse<%= comment._id %>">
+											<input type="text" id="reply-input" placeholder="prese enter to reply" class="form-control form-controll-sm">
+										</div>
+										<% if (comment?.replies.length > 0) { %>
+										<% [...comment?.replies].forEach(reply => { %>
+
+										<div class="reply-card">
+											<div class="d-flex">
+												<div class="flex-shrink-0">
+													<img class="reply-image" src="<%=reply.user.profilePic%>" alt="<% comment.username %>'s Comments' ">
+												</div>
+												<div class="flex-grow-1 ms-3 comment-body">
+													<h5><%= reply.user.username %> </h5>
+													<p class="text-muted my-1"> <%=reply.body %> </p>
+												</div>
+											</div>
+										</div>
+
+
+										<% }) %>
+										<% } %>
+
+									</div>
+
+								</div>
+
+
+								<% }) %>
+								<% } %>
+							</div>
 
 
 
 
 
-
-                            <% } else { %>
-                            <div role="group" class="btn-group-lg">
-                                <button disabled class="btn btn-success">Like( <%= post.likes.length%> )</button>
-                                <button disabled class="btn btn-danger">Like( <%= post.dislikes.length  %> )</button>
-                            </div>
-                            <p class="pt-5">To Like and Comment <a href="/auth/login"> Login </a> or <a
-                                    href="/auth/signup"> Sing up</a></p>
-                            <% } %>
-                        </div>
+							<% } else { %>
+							<div role="group" class="btn-group-lg">
+								<button disabled class="btn btn-success">Like( <%= post.likes.length%> )</button>
+								<button disabled class="btn btn-danger">Like( <%= post.dislikes.length  %> )</button>
+							</div>
+							<p class="pt-5">To Like and Comment <a href="/auth/login"> Login </a> or <a href="/auth/signup"> Sing up</a></p>
+							<% } %>
+						</div>
 
 
 
 
-                    </div>
+					</div>
 
-                </div>
-            </div>
-        </div>
-    </div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <!-- Modal -->
+	<!-- Modal -->
 </main>
 
 <%- include("../../../includes/footer.ejs") %>
 <script src="/script/bootstrap.bundle.js"></script>
 <script src="/script/bookmark.js"></script>
 <script src="/script/likeDislike.js"></script>
+<script src="/script/comment.js"></script>
 </body>
 
 </html>

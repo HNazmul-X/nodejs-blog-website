@@ -194,14 +194,14 @@ exports.singlePostView = async (req, res, next) => {
         path:"comments", 
         populate:{
             path:"user",
-            select:"user profilePic"
+            select:"username profilePic"
         }
     })
     .populate({
         path:"comments",
         populate:{
             path:"replies.user",
-            select:"username profilePics"
+            select:"username profilePic"
         }
     })
     

@@ -41,7 +41,7 @@ exports.commentPostController = async (req, res, next) => {
 
 exports.replyCommentPostController = async (req, res, next) => {
     const {commentId} = req.params
-    const body = req.body
+    const {body} = req.body
 
     if(!req.user){
       return  res.status(401).json({massage:"You are not an authenticated user"})
@@ -65,7 +65,8 @@ exports.replyCommentPostController = async (req, res, next) => {
 
         res.status(200).json({
             ...reply,
-            profilePic:req.user._id
+            profilePic:req.user.profilePic,
+            username :req.user.username
         })
 
     } catch (e) {
