@@ -66,7 +66,6 @@ exports.postPostController = async (req, res, next) => {
                 thumbnail = `/upload/${req.file.filename}` || "";
             }
             const readtimes = readingTime(body).text;
-            console.log(tags)
 
             try {
                 const createdPost = await new PostModel({

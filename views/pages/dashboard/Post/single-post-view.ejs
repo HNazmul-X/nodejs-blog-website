@@ -22,7 +22,7 @@
 							<div class="col p-2">
 								<p class="small text-muted mb-0"> <%= blogCreatedMoment(post?.createdAt)%> , &nbsp;
 									posted by
-									<%=post?.author.username%> &nbsp; , <%= post.readtimes %> </p>
+									<a href="/user/<%= post?.author?._id%> "><%=post?.author.username%> </a>&nbsp; , <%= post.readtimes %> </p>
 							</div>
 							<% if (user) { %>
 							<div class="col">
@@ -74,7 +74,7 @@
 								<div class="comment-card border">
 									<div class="d-flex">
 										<div class="flex-shrink-0">
-											<img class="comment-image" src="<%=comment.user.profilePic%>" alt="<% comment.username %>'s Comments' ">
+											<a href="/user/<%= comment?.user?._id %> "><img class="comment-image" src="<%=comment.user.profilePic%>" alt="<% comment.username %>'s Comments' "></a>
 										</div>
 										<div class="flex-grow-1 ms-3 comment-body">
 											<h5><%= comment.user.username %> </h5>
@@ -96,7 +96,7 @@
 										<div class="reply-card">
 											<div class="d-flex">
 												<div class="flex-shrink-0">
-													<img class="reply-image" src="<%=reply.user.profilePic%>" alt="<% comment.username %>'s Comments' ">
+													<a href="/user/<%= reply?.user?._id %> "><img class="reply-image" src="<%=reply.user.profilePic%>" alt="<% comment.username %>'s Comments' "></a>
 												</div>
 												<div class="flex-grow-1 ms-3 comment-body">
 													<h5><%= reply.user.username %> </h5>

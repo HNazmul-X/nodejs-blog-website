@@ -48,23 +48,24 @@
             <% posts.forEach(post => { %>
             <div class="card box my-5 home-post-card" style="width:100%">
                 <div class="card-body">
-                    <a href="/post/<%= post._id %>" class="text-decoration-none text-dark">
-                        <h4 class="card-title"><%= post.title.substr(0,70)%>... </h4>
-                        <p class="card-text fs-5 text-muted"><%= truncate(post.body) %>... </p>
+                    <a href="/post/<%= post?._id %>" class="text-decoration-none text-dark">
+                        <h4 class="card-title"><%= post?.title.substr(0,70)%>... </h4>
+                        <p class="card-text fs-5 text-muted"><%= truncate(post?.body) %>... </p>
                     </a>
                 </div>
                 <div class="p-2 text-end">
-                    <p class="small text-muted mb-0"> <%= blogCreatedMoment(post.createdAt)%> , &nbsp; posted by
-                        <%=post.author.username%> &nbsp; , <%= post.readtimes %> </p>
+                    <p class="small text-muted mb-0"> <%= blogCreatedMoment(post?.createdAt)%> , &nbsp; posted by
+                    	<a href="/user/<%= post?.author?._id%> "><%=post?.author.username%> &nbsp; , <%= post?.readtimes %>
+                    </p>
                 </div>
                 <div class="w-100 card-img-cover">
-                    <img src="<%= post.thumbnail ? post.thumbnail : "/images/blog-placeholder.png" %>" class="w-100 "
+                    <img src="<%= post?.thumbnail ? post?.thumbnail : "/images/blog-placeholder.png" %>" class="w-100 "
                         alt="">
                     <% if (user) { %>
                     <div id="" class="icons-area">
-                        <div id="bookmark-parent" data-post-id="<%= post._id %> " class="icon-bookmark">
+                        <div id="bookmark-parent" data-post-id="<%= post?._id %> " class="icon-bookmark">
 
-                            <% if (profile.bookmarks.includes(post._id)) { %>
+                            <% if (profile?.bookmarks?.includes(post?._id)) { %>
                                 <span class="iconify-inline" data-icon="clarity:bookmark-solid"></span>
                                 <h6 class="add-bookmark-text">added</h6>
                             <% } else {%>

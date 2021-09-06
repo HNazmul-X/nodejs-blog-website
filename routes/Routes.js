@@ -6,6 +6,7 @@ const homeRouter = require("./homeRoutes");
 const postRouter = require("./postRoute");
 const searchRouter = require("./searchRouter");
 const uploadRouter = require("./uploadRouter");
+const userRoute = require("./userRoute");
 
 const routes = [
     {
@@ -31,6 +32,10 @@ const routes = [
     {
         path: "/search",
         handler: searchRouter,
+    },
+    {
+        path: "/user",
+        handler: userRoute,
     },
     {
         path: "/upload",

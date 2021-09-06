@@ -11,7 +11,7 @@ exports.dashboardGetController = async (req, res, next) => {
         if (profile) {
             res.render("pages/dashboard/dashboard", {
                 flashMsg: Flash.getMassage(req),
-                profile:profile,
+                profile: profile,
             });
         } else {
             res.redirect("/dashboard/create-profile");
@@ -72,7 +72,6 @@ exports.createProfilePostController = async (req, res, next) => {
 };
 
 exports.editProfileGetController = async (req, res, next) => {
-    
     try {
         const profile = await ProfileModel.findOne({ user: req.user._id });
         if (!profile) {
@@ -92,6 +91,7 @@ exports.editProfileGetController = async (req, res, next) => {
 exports.editProfilePostController = async (req, res, next) => {
     const inputError = validationResult(req).formatWith((e) => e.msg);
     const { name, title, bio, facebook, website, linkedin, github } = req.body;
+
     if (inputError.isEmpty()) {
         try {
             const updatedProfile = await ProfileModel.findOneAndUpdate(
@@ -101,7 +101,7 @@ exports.editProfilePostController = async (req, res, next) => {
                         name,
                         title,
                         bio,
-                        link: {
+                        links: {
                             facebook: facebook || "",
                             website: website || "",
                             linkedin: linkedin || "",
@@ -119,11 +119,10 @@ exports.editProfilePostController = async (req, res, next) => {
                 profile: updatedProfile,
             });
         } catch (e) {
-            next(e)
-        }   
-
+            next(e);
+        }
     } else {
-        req.flash("fail","Please check the form")
+        req.flash("fail", "Please check the form");
         res.render("pages/dashboard/edit-profile", {
             flashMsg: Flash.getMassage(req),
             error: inputError.mapped(),

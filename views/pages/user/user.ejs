@@ -1,0 +1,86 @@
+<%- include("../../includes/header.ejs",{title:"welcome Home page"})%>
+
+<div class="container">
+	<div class="cover-img">
+		<img src="" alt="">
+	</div>
+
+	<div class="profile box mb-5">
+		<div class="row align-items-center p-4">
+			<div class="col-md-4">
+				<img src="<%= user?.profilePic %>" class=" img-thumbnail img-fluid p-2" alt="">
+			</div>
+			<div class="col-md-8">
+				<h3> <span class="iconify-inline me-2 " data-icon="healthicons:ui-user-profile"></span>
+					<%= user?.profile?.name %> </h3>
+				<p class="text-muted"> <span class="iconify-inline me-2 fs-5" data-icon="ic:baseline-title"></span><%= user?.profile?.title %> </p>
+				<p class="text-muted"><span class="iconify-inline me-2 fs-5" data-icon="carbon:email"></span>
+					<%= user?.email %></p>
+				<p class="text-muted"><span class="iconify-inline me-2 fs-5" data-icon="mdi:bio"></span><%= user?.profile.bio%></p>
+				<p class="d-flex align-content-center g-3">Socials :
+					<% if (user?.profile?.links?.facebook) { %>
+
+					<a href="<%= user?.profile?.links?.facebook %>" target="_blank"><span class="iconify-inline mx-2" data-height="30px" data-icon="akar-icons:facebook-fill"></span></a>
+
+					<% } else if (user?.profile?.links?.linkedin){ %>
+
+					<a href="<%= user?.profile?.links?.linkedin %>" target="_blank"><span class="iconify-inline mx-2" data-height="30px" data-icon="akar-icons:facebook-fill"></span></a>
+
+					<% } else if (user?.profile?.links?.website){ %>
+
+					<a href="<%= user?.profile?.links?.website %>" target="_blank"><span class="iconify-inline mx-2" data-height="30px" data-icon="akar-icons:facebook-fill"></span></a>
+
+					<% } else if (user?.profile?.links?.github){ %>
+
+					<a href="<%= user?.profile?.links?.github %>" target="_blank"><span class="iconify-inline mx-2" data-height="30px" data-icon="akar-icons:facebook-fill"></span></a>
+
+					<% } else { %>
+					No Links
+					<% } %>
+				</p>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="list-of-the-post box p-2 py-5">
+		<h2 class="text-center">All Post From this User</h2>
+
+		<% if (user?.profile?.posts===0) { %>
+		<h4 class="text-muted text-center">This user has no post to see</h4>
+		<% } else { %>
+
+            <div class="row">
+                <% [...user?.profile?.posts].forEach(post => { %>
+                    <div class="col-md-6 p-2 px-4">
+                        <div class="card card-body p-0 h-100">
+                            <div class="d-flex h-100 ">
+                            	<div class="flex-shrink-0">
+                            		<img style="width: 50px;height: 100%;" src="<%= post?.thumbnail %>" alt="...">
+                            	</div>
+                            	<div class="flex-grow-1 ms-3 py-2">
+                            		<h5 class="text-secondary"> <a class="text-decoration-none text-secondary" href="/post/<%= post?._id %>"><%= post?.title%></a></h5>
+                            	</div>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+
+		<% } %>
+
+	</div>
+
+</div>
+
+
+
+
+
+<%- include("../../includes/footer.ejs") %>
+<script src="/script/bootstrap.bundle.js"></script>
+<script src="/script/bookmark.js"></script>
+</body>
+
+</html>

@@ -1,32 +1,39 @@
 <div class="sitebar col-3">
-    <% if (user) { %>
+	<% if (user) { %>
+	<% if (Object.keys(profile).length===0) { %>
+	<div class="box p-2">
+		<h5>complete your <a href="/dashboard/edit-profile">profile</a> please </h5>
+	</div>
+	<% } else { %>
 
-    <div class="profile__image-and-name">
-        <img src="<%= user.profilePic %> " alt="" class="profile-image" />
-        <div class="name">
-            <h4><%= profile.name %></h4>
-        </div>
-    </div>
-    <div class="navigation">
-        <ul class="">
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/post/create-post">New Post</a></li>
-            <li><a href="/post">My Post</a></li>
-            <li><a href="/dashboard/bookmarks">Bookmarks</a></li>
-            <li><a href="/dashboard/comments">Comments</a></li>
-            <li><a href="/dashboard/edit-profile">Edit Profile</a></li>
-            <li><a href="/dashboard/comments">Change Profile</a></li>
-            <li><a href="/">Home</a></li>
-            <li><a href="/auth/logout">Log Out</a></li>
-        </ul>
-    </div>
-    <% } else { %>
-            <div class="box">
-                <div class="p-4 text-center">
-                <img src="/images/unlock image.png" class="w-100 mb-3" alt="">
-                <h5 class="text-center"><a href="/auth/signup">Create an account</a> or <a href="/auth/login"> Login</a>
-                    to get <br /> <span class="fs-3"> Full access</span></h5>
-            </div>
-            </div>
-        <% } %>
+	<div class="profile__image-and-name">
+		<img src="<%= user.profilePic %> " alt="" class="profile-image" />
+		<div class="name">
+			<h4><%= profile.name %></h4>
+		</div>
+	</div>
+	<div class="navigation">
+		<ul class="">
+			<li><a href="/dashboard">Dashboard</a></li>
+			<li><a href="/post/create-post">New Post</a></li>
+			<li><a href="/post">My Post</a></li>
+			<li><a href="/dashboard/bookmarks">Bookmarks</a></li>
+			<li><a href="/dashboard/comments">Comments</a></li>
+			<li><a href="/dashboard/edit-profile">Edit Profile</a></li>
+			<li><a href="/dashboard/comments">Change Profile</a></li>
+			<li><a href="/">Home</a></li>
+			<li><a href="/auth/logout">Log Out</a></li>
+		</ul>
+	</div>
+	<% } %>
+
+	<% } else { %>
+	<div class="box">
+		<div class="p-4 text-center">
+			<img src="/images/unlock image.png" class="w-100 mb-3" alt="">
+			<h5 class="text-center"><a href="/auth/signup">Create an account</a> or <a href="/auth/login"> Login</a>
+				to get <br /> <span class="fs-3"> Full access</span></h5>
+		</div>
+	</div>
+	<% } %>
 </div>

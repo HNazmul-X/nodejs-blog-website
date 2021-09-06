@@ -27,7 +27,7 @@ exports.searchGetController = async (req, res, next) => {
             totalPage,
             currentPage,
             searchStr,
-            profile,
+            profile: profile || {},
         });
     } catch (e) {
         next(e);

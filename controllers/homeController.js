@@ -39,6 +39,7 @@ const generateFilterObject = (filterString) => {
         }
         case "latest":{
             filterObj = {}
+            order = -1;
         }
 
     }
@@ -79,7 +80,7 @@ exports.homeGetController = async (req, res, next) => {
         res.render("pages/home/home", {
             flashMsg: Flash.getMassage(req),
             filter: filter.charAt(0).toUpperCase() + filter.substr(1, filter.length).toLowerCase(),
-            profile,
+            profile : profile || {},
             posts,
             totalPage,
             currentPage,
