@@ -58,6 +58,8 @@ exports.homeGetController = async (req, res, next) => {
     const currentPage = parseInt(req.query.page) || 1;
     const itemPerpage = 10
 
+    
+
     try {
         let profile = []
 

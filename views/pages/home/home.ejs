@@ -12,10 +12,12 @@
             <div class="box p-5 search-pannel">
                 <div class="row">
                     <div class="col-9">
-                        <div class="input-group">
-                            <span class="input-group-text">@</span>
-                            <input type="text" class="form-control">
-                        </div>
+                        <form action="/search" method="get">
+                            <div class="input-group">
+                            	<span class="input-group-text">@</span>
+                            	<input name="search" type="text" class="form-control">
+                            </div>
+                        </form>
                     </div>
                     <div class="col-3">
                         <div class="dropdown">

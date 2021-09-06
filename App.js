@@ -24,6 +24,7 @@ mongoose
         useUnifiedTopology: true,
         useNewUrlParser: true,
         useFindAndModify: false,
+        useCreateIndex:true
     })
     .then((res) => {
         app.listen(port, console.log(chalk.bgGreen.black(`your server is running port on http://${process.env.DB_HOST}:${port}`)));

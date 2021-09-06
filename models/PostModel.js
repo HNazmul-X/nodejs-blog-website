@@ -19,11 +19,7 @@ const postSchema = new Schema(
             ref: "User",
             required: true,
         },
-        tags: {
-            type: [String],
-            required: true,
-            trim: true,
-        },
+        tags: [{ type: String, required: true, trim: true }],
         thumbnail: String,
         readtimes: String,
         likes: [Schema.Types.ObjectId],
@@ -37,6 +33,20 @@ const postSchema = new Schema(
     },
     {
         timestamps: true,
+    },
+);
+postSchema.index(
+    {
+        title: "text",
+        body: "text",
+        tags: "text",
+    },
+    {
+        weight: {
+            title: 5,
+            body: 2,
+            tags: 3,
+        },
     },
 );
 
