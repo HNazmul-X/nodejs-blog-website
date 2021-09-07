@@ -1,5 +1,6 @@
 const chalk = require("chalk");
 const { validationResult } = require("express-validator");
+const CommentModel = require("../models/CommentModel");
 const ProfileModel = require("../models/ProfileModel");
 const UserModel = require("../models/UserModel");
 const Flash = require("../Utils/Flash");
@@ -140,3 +141,57 @@ exports.editProfilePostController = async (req, res, next) => {
         });
     }
 };
+
+exports.allBookmarksGetController = async (req, res, next) => {
+    try {
+        const bookmarks = await ProfileModel.findOne({user:req.user._id}).select("_id").populate({
+            path:"bookmarks",
+            select:"title _id thumbnail"
+        })
+        const profile = ProfileModel.findOne({user:req.user._id}).select("name profilePic")
+        // res.json(bookmarks)
+
+        res.render("pages/dashboard/allBookmarks", {
+            flashMsg:Flash.getMassage(req),
+            profile, 
+            bookmarks
+        })
+
+    } catch (e) {
+        next(e);
+    }
+};
+
+exports.allCommentGetController =  async (req, res, next) => {
+
+    try{
+
+        const profile = await ProfileModel.findOne({user:req.user._id}).select("posts name profilePic")
+        const comments = await CommentModel.find({post:{$in:profile.posts}}).populate({
+            path:"user",
+            select:"profilePic _id"
+        }).populate({
+            path:"post",
+            select:"title thumbnail _id"
+        }).populate({
+            path:"replies.user",
+            select:"username profilePic"
+        })
+
+        // return res.json(comments)
+
+        res.render("pages/dashboard/comments",{
+            flashMsg:Flash.getMassage(req),
+            profile,
+            comments
+
+        })
+
+
+
+    } catch(e) {
+        next(e)
+    }
+
+
+}

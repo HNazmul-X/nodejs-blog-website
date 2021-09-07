@@ -1,0 +1,48 @@
+<%- include("../../includes/header.ejs",  {title:"login to your account"})%>
+
+<div class="container">
+	<div class="row dashboard-layout">
+		<!-- imported sitebar -->
+		<%- include("../dashboard/sitebar.ejs") %>
+
+		<!-- =============================== -->
+		<!-- dashbarod page content -->
+		<div class="col-9 add-post-page dashboard-content">
+			<div class="p-4 text-center box mb-4">
+				<h2 class="text-secondary">List Of Your Post</h2>
+			</div>
+
+			<% if (bookmarks.bookmarks.length === 0) { %>
+			<div class="box p-5 text-center">
+				<img src="/images/Empty-pana.svg" class="w-100" alt="">
+				<h5>You didn't Have any Bookmark yet</h5>
+			</div>
+			<% } else { %>
+			<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-2 p-2">
+				<% [...bookmarks.bookmarks].forEach(bookmark => { %>
+					<div class="col ">
+						<div class="card h-100">
+							<img src="<%= bookmark.thumbnail%>" class="card-img-top" alt="...">
+							<div class="card-body">
+								<a href="/post/<%= bookmark._id %> " class="d-block text-secondary">
+									<h6 class="card-title"><%= bookmark?.title.substr(0,50) %> ..</h6>
+								</a>
+							</div>
+						</div>
+					</div>
+				<% }) %>
+			</div>
+
+			<% } %>
+
+
+		</div>
+	</div>
+</div>
+
+<%- include("../../includes/footer.ejs") %>
+<script src="/script/bootstrap.bundle.js"></script>
+<script src="/script/defaultFrontend.js"></script>
+</body>
+
+</html>

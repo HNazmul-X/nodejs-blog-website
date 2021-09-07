@@ -83,3 +83,11 @@ input,
     box-shadow:  14px 14px 38px #d7d7d7,
              -14px -14px 38px #f7f7f7;
 }
+.shadow-3d-1-inset{
+    box-shadow: inset 12px 12px 14px #dedede,
+            inset -12px -12px 14px #f0f0f0;
+}
+.shadow-3d-1-box{
+    box-shadow:  5px 5px 10px #cecece,
+             -5px -5px 10px #ffffff;
+}
