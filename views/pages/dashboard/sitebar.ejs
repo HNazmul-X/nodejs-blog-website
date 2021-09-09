@@ -1,4 +1,4 @@
-<div class="sitebar col-3">
+<div id="sitebar" class="sitebar col-3">
 	<% if (user) { %>
 	<% if (Object.keys(profile).length===0) { %>
 	<div class="box p-2">
@@ -14,15 +14,15 @@
 	</div>
 	<div class="navigation">
 		<ul class="">
-			<li><a href="/dashboard">Dashboard</a></li>
-			<li><a href="/post/create-post">New Post</a></li>
-			<li><a href="/post">My Post</a></li>
-			<li><a href="/dashboard/bookmarks">Bookmarks</a></li>
-			<li><a href="/dashboard/comments">Comments</a></li>
-			<li><a href="/dashboard/edit-profile">Edit Profile</a></li>
-			<li><a href="/dashboard/comments">Change Profile</a></li>
-			<li><a href="/">Home</a></li>
-			<li><a href="/auth/logout">Log Out</a></li>
+			<li><a href="/dashboard"><span class="iconify-inline mx-2" data-icon="bx:bxs-dashboard"></span>Dashboard</a></li>
+			<li><a href="/post/create-post"><span class="iconify-inline mx-2" data-icon="el:file-new"></span>New Post</a></li>
+			<li><a href="/post"><span class="iconify-inline mx-2" data-icon="entypo:documents"></span>My Post</a></li>
+			<li><a href="/dashboard/bookmarks"><span class="iconify-inline mx-2" data-icon="ic:round-bookmarks"></span>Bookmarks</a></li>
+			<li><a href="/dashboard/comments"><span class="iconify-inline mx-2" data-icon="zmdi:comments"></span>Comments</a></li>
+			<li><a href="/dashboard/edit-profile"><span class="iconify-inline mx-2" data-icon="bx:bxs-edit"></span>Edit Profile</a></li>
+			<li><a href="/dashboard/change-password"><span class="iconify-inline mx-2" data-icon="teenyicons:password-outline"></span>Change Password</a></li>
+			<li><a href="/"><span class="iconify-inline mx-2" data-icon="fa-solid:home"></span>Home</a></li>
+			<li><a href="/auth/logout"><span class="iconify-inline mx-2" data-icon="iconoir:log-out"></span>Log Out</a></li>
 		</ul>
 	</div>
 	<% } %>
@@ -36,4 +36,16 @@
 		</div>
 	</div>
 	<% } %>
+
+	
+	<div class="sitebar-icon">
+		<div class="sitebar-bars-wrapper">
+			<div class="bars"></div>
+			<div class="bars"></div>
+			<div class="bars"></div>
+			<div class="bars"></div>
+		</div>
+	</div>
+
+
 </div>

@@ -18,21 +18,19 @@
 				<h5>You didn't Have any Bookmark yet</h5>
 			</div>
 			<% } else { %>
-			<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-2 p-2">
-				<% [...bookmarks.bookmarks].forEach(bookmark => { %>
-					<div class="col ">
-						<div class="card h-100">
-							<img src="<%= bookmark.thumbnail%>" class="card-img-top" alt="...">
-							<div class="card-body">
-								<a href="/post/<%= bookmark._id %> " class="d-block text-secondary">
-									<h6 class="card-title"><%= bookmark?.title.substr(0,50) %> ..</h6>
-								</a>
-							</div>
+			<div class="row row-cols-3 row-cols-md-3">
+				<% [...bookmarks.bookmarks].forEach(post => { %>
+
+				<div class="col p-1 p-md-2 mb-3">
+					<div class="card shadow-3d-1-box h-100 dashboard-card">
+						<img src="<%= post.thumbnail ? post.thumbnail : "/images/blog-placeholder.png"%>" class="card-img-top" alt="<%=profile.name%>'s Post it is">
+						<div class="card-body">
+							<h5 class="card-title"><a href="/post/<%=post._id%>" class="text-decoration-none d-inline-block text-muted"><%= post?.title.substr(0, 30)%>...</a></h5>
 						</div>
 					</div>
+				</div>
 				<% }) %>
 			</div>
-
 			<% } %>
 
 

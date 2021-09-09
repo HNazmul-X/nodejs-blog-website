@@ -1,4 +1,4 @@
-const chalk = require("chalk");
+const bcrypt = require("bcrypt");
 const { validationResult } = require("express-validator");
 const CommentModel = require("../models/CommentModel");
 const ProfileModel = require("../models/ProfileModel");
@@ -7,12 +7,32 @@ const Flash = require("../Utils/Flash");
 
 exports.dashboardGetController = async (req, res, next) => {
     try {
-        const profile = await ProfileModel.findOne({ user: req.user._id });
+        const profile = await ProfileModel.findOne({ user: req.user._id })
+            .select("_id name profilePic")
+            .populate({
+                path: "posts",
+                select: "_id thumbnail title",
+                options: { 
+                    sort: { createdAt: -1 },
+                    limit:3
+                 },
+            })
+            .populate({
+                path: "bookmarks",
+                select: "_id title thumbnail",
+                limit: 3,
+                options: { 
+                    sort: { createdAt: -1 },
+                    limit:3
+                 },
+            });
 
         if (profile) {
             res.render("pages/dashboard/dashboard", {
                 flashMsg: Flash.getMassage(req),
                 profile: profile,
+                posts: profile.posts,
+                bookmarks:profile.bookmarks,
             });
         } else {
             res.redirect("/dashboard/create-profile");
@@ -144,54 +164,112 @@ exports.editProfilePostController = async (req, res, next) => {
 
 exports.allBookmarksGetController = async (req, res, next) => {
     try {
-        const bookmarks = await ProfileModel.findOne({user:req.user._id}).select("_id").populate({
-            path:"bookmarks",
-            select:"title _id thumbnail"
-        })
-        const profile = ProfileModel.findOne({user:req.user._id}).select("name profilePic")
+        const bookmarks = await ProfileModel.findOne({ user: req.user._id }).select("_id").populate({
+            path: "bookmarks",
+            select: "title _id thumbnail",
+        });
+        const profile = ProfileModel.findOne({ user: req.user._id }).select("name profilePic");
         // res.json(bookmarks)
 
         res.render("pages/dashboard/allBookmarks", {
-            flashMsg:Flash.getMassage(req),
-            profile, 
-            bookmarks
-        })
-
+            flashMsg: Flash.getMassage(req),
+            profile,
+            bookmarks,
+        });
     } catch (e) {
         next(e);
     }
 };
 
-exports.allCommentGetController =  async (req, res, next) => {
-
-    try{
-
-        const profile = await ProfileModel.findOne({user:req.user._id}).select("posts name profilePic")
-        const comments = await CommentModel.find({post:{$in:profile.posts}}).populate({
-            path:"user",
-            select:"profilePic _id"
-        }).populate({
-            path:"post",
-            select:"title thumbnail _id"
-        }).populate({
-            path:"replies.user",
-            select:"username profilePic"
-        })
+exports.allCommentGetController = async (req, res, next) => {
+    try {
+        const profile = await ProfileModel.findOne({ user: req.user._id }).select("posts name profilePic");
+        const comments = await CommentModel.find({ post: { $in: profile.posts } })
+            .populate({
+                path: "user",
+                select: "profilePic _id",
+            })
+            .populate({
+                path: "post",
+                select: "title thumbnail _id",
+            })
+            .populate({
+                path: "replies.user",
+                select: "username profilePic",
+            });
 
         // return res.json(comments)
 
-        res.render("pages/dashboard/comments",{
-            flashMsg:Flash.getMassage(req),
+        res.render("pages/dashboard/comments", {
+            flashMsg: Flash.getMassage(req),
             profile,
-            comments
-
-        })
-
-
-
-    } catch(e) {
-        next(e)
+            comments,
+        });
+    } catch (e) {
+        next(e);
     }
+};
 
+exports.changePasswordGetController = async (req, res, next) => {
+    try {
+        const profile = await ProfileModel.findOne({ user: req.user._id }).select("name profilePic");
+        res.render("pages/dashboard/changePassword", {
+            flashMsg: Flash.getMassage(req),
+            profile,
+            error: {},
+            errorStr: "",
+        });
+    } catch (e) {
+        next(e);
+    }
+};
 
-}
+exports.changePasswordPostController = async (req, res, next) => {
+    try {
+        const formError = validationResult(req).formatWith((e) => e.msg);
+        console.log(formError);
+        const profile = await ProfileModel.findOne({ user: req.user._id }).select("name profilePic");
+        const { oldPassword, newPassword } = req.body;
+
+        if (!formError.isEmpty()) {
+            res.render("pages/dashboard/changePassword", {
+                flashMsg: Flash.getMassage(req),
+                profile,
+                error: formError.mapped(),
+                errorStr: "",
+            });
+        } else {
+            const user = await UserModel.findById(req.user._id);
+            const isPasswordMatched = await bcrypt.compare(oldPassword, user.password);
+            console.log(isPasswordMatched);
+
+            if (!isPasswordMatched) {
+                res.render("pages/dashboard/changePassword", {
+                    flashMsg: Flash.getMassage(req),
+                    profile,
+                    error: {},
+                    errorStr: "Please Provide a correct Old Password",
+                });
+            } else {
+                const newHashedPassword = await bcrypt.hash(newPassword, 12);
+                await UserModel.findOneAndUpdate(
+                    { _id: req.user._id },
+                    {
+                        $set: {
+                            password: newHashedPassword,
+                        },
+                    },
+                );
+                req.flash("success", "Password changed Successfully");
+                res.render("pages/dashboard/changePassword", {
+                    flashMsg: Flash.getMassage(req),
+                    profile,
+                    error: {},
+                    errorStr: "",
+                });
+            }
+        }
+    } catch (e) {
+        next(e);
+    }
+};

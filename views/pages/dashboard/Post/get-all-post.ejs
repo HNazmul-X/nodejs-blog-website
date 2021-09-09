@@ -21,21 +21,19 @@
                 <div class="p-3 box mb-5 text-center">
                     <h1 class="text-muted">Your All Post</h1>
                 </div>
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
-                    <% posts.forEach(post => { %>
+                <div class="row row-cols-3 row-cols-md-3">
+                	<% posts.forEach(post => { %>
 
-                    <div class="col mb-3">
-                        <div class="card box h-100">
-                            <img src="<%= post.thumbnail ? post.thumbnail : "/images/blog-placeholder.png"%>"
-                                class="card-img-top" alt="<%=profile.name%>'s Post it is">
-                            <div class="card-body">
-                                <h5 class="card-title"><a href="/post/edit/<%=post._id%>" class="text-decoration-none d-inline-block text-muted"><%= post?.title.substr(0, 30)%>...</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                    <% }) %>
+                	<div class="col p-1 p-md-2 mb-3">
+                		<div class="card shadow-3d-1-box h-100 dashboard-card">
+                			<img src="<%= post.thumbnail ? post.thumbnail : "/images/blog-placeholder.png"%>" class="card-img-top" alt="<%=profile.name%>'s Post it is">
+                			<div class="card-body">
+                				<h5 class="card-title"><a href="/post/edit/<%=post._id%>" class="text-decoration-none d-inline-block text-muted"><%= post?.title.substr(0, 30)%>...</a></h5>
+                			</div>
+                		</div>
+                	</div>
+                	<% }) %>
                 </div>
-
                 <% } %>
             </div>
         </div>

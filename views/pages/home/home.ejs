@@ -9,17 +9,17 @@
         <!-- dashbarod page content -->
         <div class="col-9 col-md-8 col-lg-7 mx-auto add-post-page dashboard-content">
 
-            <div class="box p-5 search-pannel">
+            <div class="box p-2 pt-4 pt-md-5 p-md-5  search-pannel">
                 <div class="row">
-                    <div class="col-9">
+                    <div class="col-md-9 ">
                         <form action="/search" method="get">
                             <div class="input-group">
-                            	<span class="input-group-text">@</span>
+                            	<span class="input-group-text"><span class="iconify-inline" data-icon="bi:search"></span></span>
                             	<input name="search" type="text" class="form-control">
                             </div>
                         </form>
                     </div>
-                    <div class="col-3">
+                    <div class="col-3 mx-auto">
                         <div class="dropdown">
                             <button class="btn  dropdown-toggle" type="button" id="filter-drop-down"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -46,7 +46,7 @@
             </div>
             <% } else { %>
             <% posts.forEach(post => { %>
-            <div class="card box my-5 home-post-card" style="width:100%">
+            <div class="card box my-3 my-md-5 home-post-card" style="width:100%">
                 <div class="card-body">
                     <a href="/post/<%= post?._id %>" class="text-decoration-none text-dark">
                         <h4 class="card-title"><%= post?.title.substr(0,70)%>... </h4>
@@ -114,6 +114,7 @@
 
 <%- include("../../includes/footer.ejs") %>
 <script src="/script/bootstrap.bundle.js"></script>
+<script src="/script/defaultFrontend.js"></script>
 <script src="/script/bookmark.js"></script>
 </body>
 
