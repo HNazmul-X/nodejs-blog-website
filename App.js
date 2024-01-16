@@ -19,11 +19,11 @@ connectRoutes(app);
 error404(app);
 
 //connecting to database
-mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@maincluster.cpis4.mongodb.net/Stack_Learner_BLOG_EJS?retryWrites=true&w=majority`, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
+mongoose.connect(`mongodb+srv://USER_NAZ:t0nWvKn4djsjfqA1@cluster0.loat0zb.mongodb.net/?retryWrites=true&w=majority`, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
 });
 
-app.listen(port, console.log(chalk.bgGreen.black(`your server is running port on http://${process.env.DB_HOST}:${port}`)));
+app.listen(port, console.log(chalk.bgGreen.black(`your server is running port on http://localhost:${port}`)));

@@ -8,7 +8,7 @@ const MongoDbSessions = require("connect-mongodb-session")(session)
 const flash = require("connect-flash")
 
 const sessionStore = new MongoDbSessions({
-    uri: `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@maincluster.cpis4.mongodb.net/Stack_Learner_BLOG_EJS?retryWrites=true&w=majority`,
+    uri: `mongodb+srv://USER_NAZ:t0nWvKn4djsjfqA1@cluster0.loat0zb.mongodb.net/?retryWrites=true&w=majority`,
     collection: "sessions",
 });
 
